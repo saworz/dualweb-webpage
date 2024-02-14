@@ -1,17 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import InfoGrid from "./InfoGrid";
 
 const Background = styled.div`
   height: 100vh;
   width: 100%;
-  background: red;
+  background: rgb(65, 65, 65);
 `
 
 const AboutUs: React.FC = () => {
 
   return (
     <>
-      <Background>TEST2</Background>
+      <Background>
+        <InfoGrid /> 
+      </Background>
     </>
   );
 }

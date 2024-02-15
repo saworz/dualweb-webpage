@@ -17,6 +17,7 @@ const ContactUs: React.FC = () => {
   return (
     <Background>
       <ContactInfo adres="Bydgoszcz, Polska" phoneNumber="111-111-111" email="info@dualweb.pl" bottomText={bottomText} />
+      <ContactForm />
     </Background>
   )
 }

@@ -5,7 +5,7 @@ import { cn } from "../../utils/cn";
 import Technologies from "./TechnologiesList";
 import useWindowSize from "../../hooks/windowSize";
 
-const title = "About us"
+const title = "O Nas"
 const description = "Witaj w DualWeb - miejscu, gdzie pasja do tworzenia innowacyjnych rozwiązań spotyka się z zaangażowaniem w rozwijanie oblicza Twojego biznesu online. Jesteśmy zespołem kreatywnych entuzjastów, gotowych przekuć Twoje pomysły na funkcjonalne i estetyczne strony internetowe."
 
 
@@ -28,6 +28,12 @@ export const LampContainer = ({
   className?: string;
 }) => {
   const windowSize = useWindowSize()
+
+  const textSettings = {
+    slideUpTime : 1.5,
+    slideUpDelay: 0,
+    slideDistance: 100,
+  }
 
   const lightSettings = {
     lightUpTime: 3,
@@ -124,23 +130,23 @@ export const LampContainer = ({
       <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950 "></div>
       </div>
 
-      <div className="absolute top-1/2 scale-y-125 -translate-y-[11rem] h-48 w-[12.5rem] bg-transparent text-center z-999">
+      <div className="absolute top-1/2 scale-y-125 -translate-y-[11rem] h-48 bg-transparent text-center z-999 font-montserrat font-semibold">
           <h2 className="text-white text-5xl">{title}</h2>
         </div>
 
-      <div className="absolute top 1/2 z-50 flex flex-col items-center px-5 w-1/3">
+      <div className="absolute top 1/2 scale-y-125 z-50 flex flex-col items-center px-5 sm:w-4/5 md:w-3/4 lg:w-1/2">
           <motion.h1
-            initial={{ opacity: 0.5, y: 100 }}
+            initial={{ opacity: 0.5, y: textSettings.slideDistance }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
-              delay: 0.3,
-              duration: 2,
+              delay: textSettings.slideUpDelay,
+              duration: textSettings.slideUpTime,
               ease: "easeInOut",
             }}
 
-            className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-1xl font-medium tracking-tight text-transparent md:text-2xl"
+            className="mt-12 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-white text-center font-medium tracking-tight text-transparent text-1xl md:text-xl font-montserrat"
             >
-            {/* {children}         */}
+            {children}        
             </motion.h1>
       </div>
     </div>

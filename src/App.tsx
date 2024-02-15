@@ -1,8 +1,8 @@
-import React from 'react';
-import Header from './components/Header/Header';
-import AboutUs from './components/AboutUs/AboutUs';
-import { createGlobalStyle } from 'styled-components';
-import "./index.css"
+import React from "react";
+import Header from "./components/Header/Header";
+import AboutUs from "./components/AboutUs/AboutUs";
+import { createGlobalStyle } from "styled-components";
+import "./index.css";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -18,6 +18,6 @@ const App: React.FC = () => {
       <AboutUs />
     </div>
   );
-}
+};
 
 export default App;

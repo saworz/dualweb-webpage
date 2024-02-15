@@ -2,23 +2,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../utils/cn";
-import Technologies from "./TechnologiesList";
 import useWindowSize from "../../hooks/windowSize";
 
-const title = "O Nas"
-const description = "Witaj w DualWeb - miejscu, gdzie pasja do tworzenia innowacyjnych rozwiązań spotyka się z zaangażowaniem w rozwijanie oblicza Twojego biznesu online. Jesteśmy zespołem kreatywnych entuzjastów, gotowych przekuć Twoje pomysły na funkcjonalne i estetyczne strony internetowe."
-
-
-export function Lamp() {
-
-  return (
-    <LampContainer title={title}>
-      {description}
-    </LampContainer>
-  );
-}
-
-export const LampContainer = ({
+const LampContainer = ({
   children,
   title,
   className,
@@ -27,13 +13,13 @@ export const LampContainer = ({
   title?: string;
   className?: string;
 }) => {
-  const windowSize = useWindowSize()
+  const windowSize = useWindowSize();
 
   const textSettings = {
-    slideUpTime : 1.5,
+    slideUpTime: 1.5,
     slideUpDelay: 0,
     slideDistance: 100,
-  }
+  };
 
   const lightSettings = {
     lightUpTime: 3,
@@ -43,18 +29,18 @@ export const LampContainer = ({
     lampFinalWidth: "30rem",
     lightInitialIntensity: "9rem",
     lightFinalIntensity: "18rem",
-  }
+  };
 
   if (windowSize.width < 640) {
-    lightSettings.lampInitialWidth = "5rem"
-    lightSettings.lampFinalWidth = "14rem"
-    lightSettings.lightInitialIntensity = "2rem"
-    lightSettings.lightFinalIntensity = "10rem"
+    lightSettings.lampInitialWidth = "5rem";
+    lightSettings.lampFinalWidth = "14rem";
+    lightSettings.lightInitialIntensity = "2rem";
+    lightSettings.lightFinalIntensity = "10rem";
   } else if (windowSize.width < 1048) {
-    lightSettings.lampInitialWidth = "10rem"
-    lightSettings.lampFinalWidth = "20rem"
-    lightSettings.lightInitialIntensity = "6rem"
-    lightSettings.lightFinalIntensity = "12rem"
+    lightSettings.lampInitialWidth = "10rem";
+    lightSettings.lampFinalWidth = "20rem";
+    lightSettings.lightInitialIntensity = "6rem";
+    lightSettings.lightFinalIntensity = "12rem";
   }
 
   return (
@@ -65,7 +51,6 @@ export const LampContainer = ({
       )}
     >
       <div className="relative flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0 ">
-
         {/* Two motions div for setting light */}
         <motion.div
           initial={{ opacity: 0.5, width: lightSettings.lampInitialWidth }}
@@ -127,42 +112,29 @@ export const LampContainer = ({
           className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-cyan-400 "
         ></motion.div>
 
-      <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950 "></div>
+        <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950 "></div>
       </div>
 
       <div className="absolute top-1/2 scale-y-125 -translate-y-[11rem] h-48 bg-transparent text-center z-999 font-montserrat font-semibold">
-          <h2 className="text-white text-5xl">{title}</h2>
-        </div>
+        <h2 className="text-white text-5xl">{title}</h2>
+      </div>
 
       <div className="absolute top 1/2 scale-y-125 z-50 flex flex-col items-center px-5 sm:w-4/5 md:w-3/4 lg:w-1/2">
-          <motion.h1
-            initial={{ opacity: 0.5, y: textSettings.slideDistance }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: textSettings.slideUpDelay,
-              duration: textSettings.slideUpTime,
-              ease: "easeInOut",
-            }}
-
-            className="mt-12 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-white text-center font-medium tracking-tight text-transparent text-1xl md:text-xl font-montserrat"
-            >
-            {children}        
-            </motion.h1>
+        <motion.h1
+          initial={{ opacity: 0.5, y: textSettings.slideDistance }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: textSettings.slideUpDelay,
+            duration: textSettings.slideUpTime,
+            ease: "easeInOut",
+          }}
+          className="mt-12 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-white text-center font-medium tracking-tight text-transparent text-1xl md:text-xl font-montserrat"
+        >
+          {children}
+        </motion.h1>
       </div>
     </div>
   );
 };
 
-{/* <motion.h1
-initial={{ opacity: 0.5, y: 100 }}
-whileInView={{ opacity: 1, y: 0 }}
-transition={{
-  delay: 0.3,
-  duration: 0.8,
-  ease: "easeInOut",
-}}
-
-className="mt-8 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
->
-{children}        
-</motion.h1> */}
+export default LampContainer;

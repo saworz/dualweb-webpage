@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import AboutUs from "./components/AboutUs/AboutUs";
+import ContactUs from "./components/ContactUs/ContactUs";
 import { createGlobalStyle } from "styled-components";
 import "./index.css";
 
@@ -16,6 +17,7 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Header />
       <AboutUs />
+      <ContactUs />
     </div>
   );
 };

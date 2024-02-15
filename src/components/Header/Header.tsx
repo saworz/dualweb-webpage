@@ -3,6 +3,7 @@ import styled from "styled-components";
 import HeaderBackground from "../../assets/header-background.png";
 import LogoDW from "../../assets/logo.png";
 import { device } from '../../settings/deviceSize';
+import { motion } from "framer-motion";
 
 const Background = styled.div`
   height: 100vh;
@@ -39,7 +40,19 @@ const Header: React.FC = () => {
   return (
     <Background>
       <ContentWrapper>
-        <img src={LogoDW} alt="dualweb logo" />
+        <motion.img src={LogoDW} alt="dualweb logo"
+          initial={{ rotate: 360, scale: 0 }}
+          animate={{ rotate: 0, scale: 1 }}
+          transition={{
+            duration: .7,
+            ease: [0, 0.71, 0.2, 1.01],
+            scale: {
+              type: "spring",
+              stiffness: 260,
+              damping: 20
+            }
+          }}
+        />
         <Text>Programujemy, Wdrażamy, Udoskonalamy</Text>
       </ContentWrapper>
     </Background>

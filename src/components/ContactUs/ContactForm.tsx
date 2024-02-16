@@ -9,11 +9,16 @@ const ContactFormDiv = styled.div`
   align-items: center;
   height: 100%;
   width: 50%;
-  font-family: "Montserrat"
+  font-family: "Montserrat";
 `;
 
 const FormField = styled.div`
   width: 75%;
+
+  @media (max-width: 420px) {
+    width: 90%;
+  }
+
   height: 85%;
 
   & textarea,
@@ -55,29 +60,33 @@ const BlackLine = styled.div`
   margin-bottom: 6vh;
 `;
 
-
 const ContactForm: React.FC = () => {
-    return (
-        <ContactFormDiv>
-          <FormField>
-            <BackgroundGradient className="flex flex-col rounded-[22px] p-5v bg-gray-200 dark:bg-zinc-900">
-              <InputsField>
-                <input id="name" type="text" placeholder="Imię i nazwisko"></input>               
-                <BlackLine />
-                <input id="email" type="text" placeholder="Email"></input>
-                <BlackLine />
-                <input id="phoneNumber" type="text" placeholder="Numer telefonu"></input>
-                <BlackLine />
-                <textarea id="description" placeholder="W czym możemy Ci pomóc?"></textarea>
-              </InputsField>
-              
-              <FormButton />
+  return (
+    <ContactFormDiv>
+      <FormField>
+        <BackgroundGradient className="flex flex-col rounded-[22px] p-2v sm:p-5v bg-gray-200 dark:bg-zinc-900">
+          <InputsField>
+            <input id="name" type="text" placeholder="Imię i nazwisko"></input>
+            <BlackLine />
+            <input id="email" type="text" placeholder="Email"></input>
+            <BlackLine />
+            <input
+              id="phoneNumber"
+              type="text"
+              placeholder="Numer telefonu"
+            ></input>
+            <BlackLine />
+            <textarea
+              id="description"
+              placeholder="W czym możemy Ci pomóc?"
+            ></textarea>
+          </InputsField>
 
-            </BackgroundGradient>
-          </FormField>
-
-        </ContactFormDiv>
-    );
-}
+          <FormButton />
+        </BackgroundGradient>
+      </FormField>
+    </ContactFormDiv>
+  );
+};
 
 export default ContactForm;

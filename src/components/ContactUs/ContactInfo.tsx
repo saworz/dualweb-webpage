@@ -7,17 +7,40 @@ const ContactInfoDiv = styled.div`
   height: 100%;
   width: 50%;
   color: white;
-  padding-top: 12vh;
+  padding-top: 9vh;
+
+  @media (min-width: 640px) {
+    padding-top: 8vh;
+  }
+
+  @media (min-width: 1024px) {
+    padding-top: 12vh;
+  }
+
   text-align: center;
   font-family: "Montserrat";
 
   & h2 {
     font-size: 8vh;
+
+    @media (max-width: 640px) {
+      font-size: 6vh;
+    }
+
+    @media (max-width: 420px) {
+      font-size: 4vh;
+    }
+
     margin-bottom: 5vh;
   }
 
   & h3 {
     font-size: 4vh;
+
+    @media (max-width: 420px) {
+      font-size: 3vh;
+    }
+
     color: #dddddd;
     margin-bottom: 1vh;
   }
@@ -25,8 +48,14 @@ const ContactInfoDiv = styled.div`
   & p {
     font-size: 2vh;
     color: #d6d6d6;
-    max-width: 450px;
-    width: 50%;
+    max-width: 600px;
+    width: 75%;
+
+    @media (min-width: 768px) {
+      max-width: 450px;
+      width: 50%;
+    }
+
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 4vh;
@@ -34,23 +63,24 @@ const ContactInfoDiv = styled.div`
 `;
 
 const BottomText = styled.p`
-    color: #d6d6d6;
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3vh;
+  color: #d6d6d6;
+  width: 30%;
+
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3vh;
 `;
 
 const ContactInfo = ({
   adres,
   phoneNumber,
   email,
-  bottomText
+  bottomText,
 }: {
-  adres: string,
-  phoneNumber: string,
-  email: string,
-  bottomText: string
+  adres: string;
+  phoneNumber: string;
+  email: string;
+  bottomText: string;
 }) => {
   return (
     <ContactInfoDiv>
@@ -62,12 +92,9 @@ const ContactInfo = ({
       <h3>Email</h3>
       <p>{email}</p>
 
-      <BottomText>
-        {bottomText}
-      </BottomText>
-
+      <BottomText>{bottomText}</BottomText>
     </ContactInfoDiv>
   );
-}
+};
 
 export default ContactInfo;

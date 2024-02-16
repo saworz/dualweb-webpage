@@ -28,7 +28,7 @@ const ContactInfoDiv = styled.div`
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2vh;
+    margin-bottom: 4vh;
   }
 `;
 

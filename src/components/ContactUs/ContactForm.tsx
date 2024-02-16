@@ -9,6 +9,7 @@ const ContactFormDiv = styled.div`
   align-items: center;
   height: 100%;
   width: 50%;
+  font-family: "Montserrat"
 `;
 
 const FormField = styled.div`

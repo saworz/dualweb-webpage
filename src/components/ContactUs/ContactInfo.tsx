@@ -9,6 +9,7 @@ const ContactInfoDiv = styled.div`
   color: white;
   padding-top: 12vh;
   text-align: center;
+  font-family: "Montserrat";
 
   & h2 {
     font-size: 8vh;

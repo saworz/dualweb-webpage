@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./components/Header/Header";
 import AboutUs from "./components/AboutUs/AboutUs";
 import ContactUs from "./components/ContactUs/ContactUs";
+import OurServices from "./components/OurServices/OurServices";
+
 import "./index.css";
 
 const App: React.FC = () => {
@@ -9,6 +11,7 @@ const App: React.FC = () => {
     <div className="App">
       <Header />
       <AboutUs />
+      <OurServices />
       <ContactUs />
     </div>
   );

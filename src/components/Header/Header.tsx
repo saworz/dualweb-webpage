@@ -36,7 +36,6 @@ const Text = styled.h1`
 `
 
 const Header: React.FC = () => {
-
   return (
     <Background>
       <ContentWrapper>
@@ -57,6 +56,6 @@ const Header: React.FC = () => {
       </ContentWrapper>
     </Background>
   );
-}
+};
 
 export default Header;

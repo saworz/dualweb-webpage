@@ -3,7 +3,7 @@ import { HALF_PI, TAU, TO_RAD, rand, fadeInOut } from '../../settings/Math';
 const { cos, sin, round } = Math;
 
 
-const Pipeline = ({animationSeconds}) => {
+const Pipeline = ({animationSeconds, slowDownSteps}) => {
   const pipeCount = 30;
   const pipePropCount = 8;
   const pipePropsLength = pipeCount * pipePropCount;
@@ -29,6 +29,21 @@ const Pipeline = ({animationSeconds}) => {
   const pipePropsRef = useRef(null);
 
   const timedOut = useRef(false)
+  const percSpeed = useRef(100)
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const slowDownPerStep = 100/slowDownSteps
+      percSpeed.current -= slowDownPerStep
+
+      if (percSpeed.current <= 0) {
+        clearInterval(interval)
+      }
+    }, animationSeconds*1000/slowDownSteps);
+
+    return () => clearInterval(interval);
+  }, []);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -119,7 +134,7 @@ const Pipeline = ({animationSeconds}) => {
     x = pipePropsRef.current[i];
     y = pipePropsRef.current[i + 1];
     direction = pipePropsRef.current[i + 2];
-    speed = pipePropsRef.current[i + 3];
+    speed = pipePropsRef.current[i + 3] * percSpeed.current/100;
     life = pipePropsRef.current[i + 4];
     ttl = pipePropsRef.current[i + 5];
     width = pipePropsRef.current[i + 6];

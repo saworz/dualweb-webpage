@@ -10,7 +10,7 @@ class App extends Component {
   render() {
       return (
           <div className="App">
-              <Pipeline animationSeconds={10}/>
+              <Pipeline animationSeconds={10} slowDownSteps={20}/>
               <h1>Hello, World!</h1>
           </div>
       );

@@ -4,16 +4,16 @@ const { cos, sin, round } = Math;
 
 
 const Pipeline = ({animationSeconds, slowDownSteps}) => {
-  const pipeCount = 30;
-  const pipePropCount = 8;
+  const pipeCount = 100; // amount of pipes alive at the same moment
+  const pipePropCount = 10;
   const pipePropsLength = pipeCount * pipePropCount;
-  const turnCount = 8;
+  const turnCount = 8;  // how sharp turn
   const turnAmount = (360 / turnCount) * Math.PI / 180;
-  const turnChanceRange = 58;
+  const turnChanceRange = 100;  // how often turns 
   const baseSpeed = 0.2;
   const rangeSpeed = 1;
-  const baseTTL = 100;
-  const rangeTTL = 300;
+  const baseTTL = 250;  // ticks life per pipe
+  const rangeTTL = 300; // ticks life range
   const baseWidth = 3;
   const rangeWidth = 2;
   const baseHue = 180;
@@ -124,7 +124,9 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     tickRef.current++;
 
     for (let i = 0; i < pipePropsLength; i += pipePropCount) {
+      console.log(pipePropsRef.current[i + 4])
       updatePipe(i);
+      console.log(pipePropsRef.current[i + 4])
     }
   };
 
@@ -155,7 +157,9 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     pipePropsRef.current[i + 4] = life;
 
     checkBounds(x, y);
-    life > ttl && initPipe(i);
+    if (life > ttl && percSpeed.current > 40) {
+      initPipe(i);
+    }
   };
 
   const drawPipe = (x, y, life, ttl, width, hue) => {

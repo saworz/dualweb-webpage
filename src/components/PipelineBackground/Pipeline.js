@@ -1,21 +1,21 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { HALF_PI, TAU, TO_RAD, rand, fadeInOut } from '../../settings/Math';
 const { cos, sin, round } = Math;
 
 
-const Pipeline = () => {
+const Pipeline = ({animationSeconds}) => {
   const pipeCount = 30;
   const pipePropCount = 8;
   const pipePropsLength = pipeCount * pipePropCount;
   const turnCount = 8;
   const turnAmount = (360 / turnCount) * Math.PI / 180;
   const turnChanceRange = 58;
-  const baseSpeed = 0.5;
+  const baseSpeed = 0.2;
   const rangeSpeed = 1;
   const baseTTL = 100;
   const rangeTTL = 300;
-  const baseWidth = 2;
-  const rangeWidth = 4;
+  const baseWidth = 3;
+  const rangeWidth = 2;
   const baseHue = 180;
   const rangeHue = 60;
   const backgroundColor = 'hsla(150,80%,1%,1)';
@@ -28,6 +28,17 @@ const Pipeline = () => {
   const tickRef = useRef(0);
   const pipePropsRef = useRef(null);
 
+  const timedOut = useRef(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      timedOut.current = true;
+    }, animationSeconds*1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  
   useEffect(() => {
     setup();
     draw();
@@ -52,8 +63,8 @@ const Pipeline = () => {
     tickRef.current = 0;
 
     const container = document.querySelector('.content--canvas');
-	console.log(canvasBRef.current)
-	canvasBRef.current.style.position = 'fixed';
+	  console.log(canvasBRef.current)
+	  canvasBRef.current.style.position = 'fixed';
     canvasBRef.current.style.zIndex = '-1';
     container.appendChild(canvasBRef.current);
   };
@@ -150,9 +161,11 @@ const Pipeline = () => {
   };
 
   const draw = () => {
-    updatePipes();
-    render();
-    window.requestAnimationFrame(draw);
+    if (!timedOut.current) {
+      updatePipes();
+      render();
+      window.requestAnimationFrame(draw);
+    }
   };
 
   const render = () => {

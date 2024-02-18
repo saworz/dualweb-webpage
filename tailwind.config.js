@@ -7,7 +7,15 @@ module.exports = {
     extend: {
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
-      },
+      }, 			
+      padding: {
+        "1v" : "1vh",
+        "2v" : "2vh",
+        "3v" : "3vh",
+        "4v" : "4vh",
+        "5v" : "5vh",
+				"10v": "10vh",
+			},
     },
   },
   plugins: [],

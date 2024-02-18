@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-// import Pipeline from "../PipelineBackground/Pipeline";
+import Pipeline from "../PipelineBackground/Pipeline";
 
 const Background = styled.div`
   height: 100vh;
@@ -9,9 +9,9 @@ const Background = styled.div`
 
 const OurServices: React.FC = () => {
   return (
-    <Background>
-      {/* <Pipeline animationSeconds={5} slowDownSteps={20}/> */}
-    </Background>
+    // <Background>
+      <Pipeline animationSeconds={10} slowDownSteps={20}/>
+    // </Background>
   )
 }
 

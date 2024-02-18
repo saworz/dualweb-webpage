@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HALF_PI, TAU, TO_RAD, rand, fadeInOut } from '../../settings/Math';
+import useWindowSize from '../../hooks/windowSize';
 const { cos, sin, round } = Math;
 
 
@@ -30,7 +31,11 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
 
   const timedOut = useRef(false)
   const percSpeed = useRef(100)
-  
+  const canvasCreated = useRef(false)
+
+  const windowSize = useWindowSize()
+  console.log(windowSize)
+
   useEffect(() => {
     const interval = setInterval(() => {
       const slowDownPerStep = 100/slowDownSteps
@@ -42,7 +47,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     }, animationSeconds*1000/slowDownSteps);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [windowSize]);
 
 
   useEffect(() => {
@@ -51,13 +56,12 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     }, animationSeconds*1000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [windowSize]);
 
-  
   useEffect(() => {
     setup();
     draw();
-  }, []);
+  }, [windowSize]);
 
   const setup = () => {
     createCanvas();
@@ -66,6 +70,15 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
   };
 
   const createCanvas = () => {
+
+    if (canvasARef.current) {
+      canvasARef.current.remove()
+    }
+
+    if (canvasBRef.current) {
+      canvasBRef.current.remove()
+    }
+
     canvasARef.current = document.createElement('canvas');
     canvasBRef.current = document.createElement('canvas');
 
@@ -79,14 +92,16 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
 
     const container = document.querySelector('.content--canvas');
 	  console.log(canvasBRef.current)
-	  canvasBRef.current.style.position = 'fixed';
+	  // canvasBRef.current.style.position = 'fixed';
     canvasBRef.current.style.zIndex = '-1';
     container.appendChild(canvasBRef.current);
+
+    canvasCreated.current = true
   };
 
   const resize = () => {
+    
     const { innerWidth, innerHeight } = window;
-
     canvasARef.current.width = innerWidth;
     canvasARef.current.height = innerHeight;
     ctxARef.current.drawImage(canvasBRef.current, 0, 0);
@@ -124,9 +139,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     tickRef.current++;
 
     for (let i = 0; i < pipePropsLength; i += pipePropCount) {
-      console.log(pipePropsRef.current[i + 4])
       updatePipe(i);
-      console.log(pipePropsRef.current[i + 4])
     }
   };
 

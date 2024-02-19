@@ -7,10 +7,11 @@ const Background = styled.div`
   width: 100%;
 `;
 
+
 const OurServices: React.FC = () => {
   return (
     // <Background>
-      <Pipeline animationSeconds={10} slowDownSteps={20}/>
+      <Pipeline animationSeconds={10} slowDownSteps={10}/>
     // </Background>
   )
 }

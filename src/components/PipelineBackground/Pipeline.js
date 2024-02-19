@@ -5,14 +5,34 @@ const { cos, sin, round } = Math;
 
 
 const Pipeline = ({animationSeconds, slowDownSteps}) => {
-  const pipeCount = 100; // amount of pipes alive at the same moment
+  const windowSize = useWindowSize()
+  let pipeCount // amount of pipes alive at the same moment
+  let baseSpeed
+  let rangeSpeed
+
+  if (windowSize.width > 2400) {
+    pipeCount = 120; // amount of pipes alive at the same moment
+    baseSpeed = 0.2;
+    rangeSpeed = 1;
+  } else if (windowSize.width > 1600) {
+    pipeCount = 90;
+    baseSpeed = 0.1;
+    rangeSpeed = 0.8
+  } else if (windowSize.width > 1200) {
+    pipeCount = 60
+    baseSpeed = 0.05;
+    rangeSpeed = 0.5
+  } else {
+    pipeCount = 30
+    baseSpeed = 0.02
+    rangeSpeed = 0.3
+  }
+
   const pipePropCount = 10;
   const pipePropsLength = pipeCount * pipePropCount;
   const turnCount = 8;  // how sharp turn
   const turnAmount = (360 / turnCount) * Math.PI / 180;
   const turnChanceRange = 100;  // how often turns 
-  const baseSpeed = 0.2;
-  const rangeSpeed = 1;
   const baseTTL = 250;  // ticks life per pipe
   const rangeTTL = 300; // ticks life range
   const baseWidth = 3;
@@ -29,15 +49,21 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
   const tickRef = useRef(0);
   const pipePropsRef = useRef(null);
 
-  const timedOut = useRef(false)
-  const percSpeed = useRef(100)
-  const canvasCreated = useRef(false)
+  const timedOut = useRef(false)  // stops drawing when set to true
+  const percSpeed = useRef(100) // pipes perc speed used for smooth slowdown
+  const animationRequest = useRef(null) // used to cancel animation so speeds dont mess up
 
-  const windowSize = useWindowSize()
-  console.log(windowSize)
+  // reset values on window size change
+  useEffect (() => {
+    percSpeed.current = 100
+    timedOut.current = false
+    window.cancelAnimationFrame(animationRequest.current)
+  }, [windowSize])
 
+  // slow down steps
   useEffect(() => {
     const interval = setInterval(() => {
+      console.log(percSpeed.current)
       const slowDownPerStep = 100/slowDownSteps
       percSpeed.current -= slowDownPerStep
 
@@ -49,7 +75,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     return () => clearInterval(interval);
   }, [windowSize]);
 
-
+  // animation stop
   useEffect(() => {
     const timer = setTimeout(() => {
       timedOut.current = true;
@@ -58,9 +84,10 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     return () => clearTimeout(timer);
   }, [windowSize]);
 
+  // execute animation
   useEffect(() => {
-    setup();
-    draw();
+      setup();
+      draw();
   }, [windowSize]);
 
   const setup = () => {
@@ -91,12 +118,9 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     tickRef.current = 0;
 
     const container = document.querySelector('.content--canvas');
-	  console.log(canvasBRef.current)
 	  // canvasBRef.current.style.position = 'fixed';
     canvasBRef.current.style.zIndex = '-1';
     container.appendChild(canvasBRef.current);
-
-    canvasCreated.current = true
   };
 
   const resize = () => {
@@ -131,7 +155,6 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     ttl = baseTTL + rand(rangeTTL);
     width = baseWidth + rand(rangeWidth);
     hue = baseHue + rand(rangeHue);
-
     pipePropsRef.current.set([x, y, direction, speed, life, ttl, width, hue], i);
   };
 
@@ -149,12 +172,12 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     x = pipePropsRef.current[i];
     y = pipePropsRef.current[i + 1];
     direction = pipePropsRef.current[i + 2];
-    speed = pipePropsRef.current[i + 3] * percSpeed.current/100;
+    speed = pipePropsRef.current[i + 3] * percSpeed.current/100;  // added second part for speed scaling
     life = pipePropsRef.current[i + 4];
     ttl = pipePropsRef.current[i + 5];
     width = pipePropsRef.current[i + 6];
     hue = pipePropsRef.current[i + 7];
-
+    
     drawPipe(x, y, life, ttl, width, hue);
 
     life++;
@@ -170,7 +193,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     pipePropsRef.current[i + 4] = life;
 
     checkBounds(x, y);
-    if (life > ttl && percSpeed.current > 40) {
+    if (life > ttl && percSpeed.current > 40) { //stop creating new pipes when speed is below 40%
       initPipe(i);
     }
   };
@@ -193,11 +216,11 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
   };
 
   const draw = () => {
-    if (!timedOut.current) {
-      updatePipes();
-      render();
-      window.requestAnimationFrame(draw);
-    }
+      if (!timedOut.current) { //stop updating pipes when animation is timed out
+        updatePipes();
+        render();
+        animationRequest.current = window.requestAnimationFrame(draw);
+      }
   };
 
   const render = () => {

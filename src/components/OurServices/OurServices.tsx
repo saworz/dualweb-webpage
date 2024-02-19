@@ -9,25 +9,25 @@ const Background = styled.div`
   width: 100%;
 `;
 
-const CardsContainer = styled.div`
+const PipelineTrigger = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 60%;
-  height: 60%;
   background-color: grey;
   opacity: 0.2;
 `;
 
 const OurServices: React.FC = () => {
   const pipelineRef = useRef(null);
+  const isInViewport = useIsInViewport(pipelineRef)
 
+  console.log(isInViewport)
   return (
     <Background>
-      <Pipeline animationSeconds={10} slowDownSteps={10} />
-      <CardsContainer />
+      <Pipeline animationSeconds={10} slowDownSteps={10} animationTrigger={isInViewport}/>
+      <PipelineTrigger ref={pipelineRef} />
     </Background>
   )
 }

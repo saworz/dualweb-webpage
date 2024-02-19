@@ -4,7 +4,7 @@ import useWindowSize from '../../hooks/windowSize';
 const { cos, sin, round } = Math;
 
 
-const Pipeline = ({animationSeconds, slowDownSteps}) => {
+const Pipeline = ({animationSeconds, slowDownSteps, animationTrigger}) => {
   const windowSize = useWindowSize()
   
   const pipeCount = round(windowSize.width / 25) // amount of pipes alive at the same moment
@@ -55,7 +55,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     percSpeed.current = 100
     timedOut.current = false
     window.cancelAnimationFrame(animationRequest.current)
-  }, [windowSize])
+  }, [windowSize, animationTrigger])
 
   // slow down steps
   useEffect(() => {
@@ -69,7 +69,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     }, animationSeconds*1000/slowDownSteps);
 
     return () => clearInterval(interval);
-  }, [windowSize]);
+  }, [windowSize, animationTrigger]);
 
   // animation stop
   useEffect(() => {
@@ -78,13 +78,13 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
     }, animationSeconds*1000);
 
     return () => clearTimeout(timer);
-  }, [windowSize]);
+  }, [windowSize, animationTrigger]);
 
   // execute animation
   useEffect(() => {
       setup();
       draw();
-  }, [windowSize]);
+  }, [windowSize, animationTrigger]);
 
   const setup = () => {
     createCanvas();
@@ -213,7 +213,7 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
 
   const draw = () => {
       if (!timedOut.current) { //stop updating pipes when animation is timed out
-        updatePipes();
+        animationTrigger && updatePipes();
         render();
         animationRequest.current = window.requestAnimationFrame(draw);
       }

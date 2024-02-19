@@ -4,7 +4,7 @@ import useWindowSize from '../../hooks/windowSize';
 const { cos, sin, round } = Math;
 
 
-const Pipeline = ({animationSeconds, slowDownSteps, animationTrigger}) => {
+const Pipeline = ({animationSeconds, slowDownSteps, animationTrigger, animationReset}) => {
   const windowSize = useWindowSize()
   
   const pipeCount = round(windowSize.width / 25) // amount of pipes alive at the same moment

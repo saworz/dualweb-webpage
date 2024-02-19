@@ -9,27 +9,44 @@ const Background = styled.div`
   width: 100%;
 `;
 
-const PipelineTrigger = styled.div`
+const PipelineStartTrigger = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+`;
 
-  background-color: grey;
-  opacity: 0.2;
+const PipelineResetTriggerTop = styled.div`
+  position: absolute;
+  top: 0%;
+`;
+
+const PipelineResetTriggerBot = styled.div`
+  position: absolute;
+  top: 100%;
 `;
 
 const OurServices: React.FC = () => {
-  const pipelineRef = useRef(null);
-  const isInViewport = useIsInViewport(pipelineRef)
+  const animationStartRef = useRef(null);
+  const animationStopTopRef = useRef(null);
+  const animationStopBotRef = useRef(null);
 
-  console.log(isInViewport)
+  const isInViewport = useIsInViewport(animationStartRef);
+  const topInViewport = useIsInViewport(animationStopTopRef);
+  const botInViewport = useIsInViewport(animationStopBotRef);
+
+  console.log(isInViewport);
   return (
     <Background>
-      <Pipeline animationSeconds={10} slowDownSteps={10} animationTrigger={isInViewport}/>
-      <PipelineTrigger ref={pipelineRef} />
+      <Pipeline
+        animationSeconds={10}
+        slowDownSteps={10}
+        animationTrigger={isInViewport}
+        animationReset={topInViewport || botInViewport}
+      />
+      <PipelineStartTrigger ref={animationStartRef} />
+      <PipelineResetTriggerTop ref={animationStopTopRef} />
+      <PipelineResetTriggerBot ref={animationStopBotRef} /> 
     </Background>
-  )
-}
+  );
+};
 
 export default OurServices;

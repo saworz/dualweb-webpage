@@ -6,26 +6,23 @@ const { cos, sin, round } = Math;
 
 const Pipeline = ({animationSeconds, slowDownSteps}) => {
   const windowSize = useWindowSize()
-  let pipeCount // amount of pipes alive at the same moment
+  
+  const pipeCount = round(windowSize.width / 25) // amount of pipes alive at the same moment
   let baseSpeed
   let rangeSpeed
 
   if (windowSize.width > 2400) {
-    pipeCount = 120; // amount of pipes alive at the same moment
-    baseSpeed = 0.2;
+    baseSpeed = 0.6;
     rangeSpeed = 1;
-  } else if (windowSize.width > 1600) {
-    pipeCount = 90;
-    baseSpeed = 0.1;
-    rangeSpeed = 0.8
   } else if (windowSize.width > 1200) {
-    pipeCount = 60
-    baseSpeed = 0.05;
-    rangeSpeed = 0.5
+    baseSpeed = 0.5;
+    rangeSpeed = 0.8
+  } else if (windowSize.width > 400) {
+    baseSpeed = 0.4
+    rangeSpeed = 0.6
   } else {
-    pipeCount = 30
-    baseSpeed = 0.02
-    rangeSpeed = 0.3
+    baseSpeed = 0.3
+    rangeSpeed = 0.5
   }
 
   const pipePropCount = 10;
@@ -63,7 +60,6 @@ const Pipeline = ({animationSeconds, slowDownSteps}) => {
   // slow down steps
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(percSpeed.current)
       const slowDownPerStep = 100/slowDownSteps
       percSpeed.current -= slowDownPerStep
 

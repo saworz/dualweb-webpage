@@ -16,31 +16,37 @@ const PipelineStartTrigger = styled.div`
 
 const PipelineResetTriggerTop = styled.div`
   position: absolute;
-  top: 0%;
+  top: 1%;
 `;
 
 const PipelineResetTriggerBot = styled.div`
   position: absolute;
-  top: 100%;
+  top: 99%;
 `;
+
+let playAnimation = false;
 
 const OurServices: React.FC = () => {
   const animationStartRef = useRef(null);
   const animationStopTopRef = useRef(null);
   const animationStopBotRef = useRef(null);
 
-  const isInViewport = useIsInViewport(animationStartRef);
+  const midInViewport = useIsInViewport(animationStartRef);
   const topInViewport = useIsInViewport(animationStopTopRef);
   const botInViewport = useIsInViewport(animationStopBotRef);
 
-  console.log(isInViewport);
+  if (!playAnimation && midInViewport) {
+    playAnimation = true;
+  } else if (playAnimation && !botInViewport && !topInViewport) {
+    playAnimation = false;
+  }
+
   return (
     <Background>
       <Pipeline
         animationSeconds={10}
         slowDownSteps={10}
-        animationTrigger={isInViewport}
-        animationReset={topInViewport || botInViewport}
+        animationTrigger={playAnimation}
       />
       <PipelineStartTrigger ref={animationStartRef} />
       <PipelineResetTriggerTop ref={animationStopTopRef} />

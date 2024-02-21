@@ -31,15 +31,11 @@ const Image = styled.img`
   max-width: 70px;
 `;
 
-const MediaCard = ({
-  title,
-  description,
-  image,
-}: {
+const MediaCard: React.FC<{
   title: string;
   description: string;
   image: string;
-}) => {
+}> = ({ title, description, image }) => {
   return (
     <CardContainer>
       <ImageContainer>

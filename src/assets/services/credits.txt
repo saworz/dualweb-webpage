@@ -1,0 +1,5 @@
+<a href="https://pl.freepik.com/search?format=search&last_filter=query&last_value=computer&query=computer&type=icon">Ikona autorstwa Smashicons</a> // computer
+<a href="https://pl.freepik.com/search?format=search&last_filter=query&last_value=wrench&query=wrench&type=icon">Ikona autorstwa popcornarts</a> // klucz
+<a href="https://pl.freepik.com/search?format=search&last_filter=page&last_value=7&page=7&query=workers&type=icon#uuid=fb49107b-ac93-47d8-aa20-63f1ab8c09fa">Ikona autorstwa Grafixpoint</a>
+<a href="https://pl.freepik.com/search?format=search&last_filter=page&last_value=4&page=4&query=handshake&type=icon#uuid=c60c3070-103f-431a-b45c-39eaebfdfaa7">Ikona autorstwa rukanicon</a>
+<a href="https://pl.freepik.com/search?format=search&last_filter=query&last_value=shopping+cart&query=shopping+cart&type=icon">Ikona autorstwa Darius Dan</a>

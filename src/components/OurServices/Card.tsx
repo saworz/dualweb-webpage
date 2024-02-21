@@ -8,19 +8,24 @@ import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 
 const ImageContainer = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100px;
 `;
 
 const CardContainer = styled.div`
-    opacity: 0.85;
-    width: 260px;
-    height: 400px;
-    margin: 3vh;
-    background-color: white;
-    border-radius: 10px;
+  opacity: 0.85;
+  width: 260px;
+  height: 400px;
+  margin: 3vh;
+  background-color: white;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #dfdc5d;
+    transform: translate(0%, -5%);
+  }
 `;
 const Image = styled.img`
   max-width: 70px;
@@ -49,7 +54,6 @@ const MediaCard = ({
         </Typography>
       </CardContent>
     </CardContainer>
-
   );
 };
 

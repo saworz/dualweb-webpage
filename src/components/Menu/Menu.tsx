@@ -133,7 +133,7 @@ const Menu: React.FC = () => {
         <NavItem><NavItemLink>Technologie</NavItemLink></NavItem>
         <NavItem><NavItemLink>Projekty</NavItemLink></NavItem>
         <NavItem><NavItemLink>Kontakt</NavItemLink></NavItem>
-        <NavItem><NavItemLink>Ruchanie</NavItemLink></NavItem>
+        <NavItem><NavItemLink>Lorem</NavItemLink></NavItem>
       </NavBar>
       <Mobile onClick={handleClick}>
         <MobileIcon

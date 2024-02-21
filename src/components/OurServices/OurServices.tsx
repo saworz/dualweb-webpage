@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import Pipeline from "../PipelineBackground/Pipeline";
 import useIsInViewport from "../../hooks/isInViewport";
+import MediaCard from "./Card";
 
 const Background = styled.div`
   position: relative;
@@ -22,6 +23,15 @@ const PipelineResetTriggerTop = styled.div`
 const PipelineResetTriggerBot = styled.div`
   position: absolute;
   top: 99%;
+`;
+
+const CardsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 let playAnimation = false;
@@ -51,6 +61,14 @@ const OurServices: React.FC = () => {
       <PipelineStartTrigger ref={animationStartRef} />
       <PipelineResetTriggerTop ref={animationStopTopRef} />
       <PipelineResetTriggerBot ref={animationStopBotRef} /> 
+
+      <CardsContainer>
+        <MediaCard />
+        <MediaCard />
+        <MediaCard />
+        <MediaCard />
+      </CardsContainer>
+
     </Background>
   );
 };

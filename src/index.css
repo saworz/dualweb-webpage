@@ -10,3 +10,14 @@ html {
 body {
   margin: 0;
 }
+
+.scroll-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

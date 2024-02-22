@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { HALF_PI, TAU, TO_RAD, rand, fadeInOut } from '../../settings/Math';
-import useWindowSize from '../../hooks/windowSize';
+import useWindowSize from '../../hooks/useWindowSize';
 const { cos, sin, round } = Math;
 
 

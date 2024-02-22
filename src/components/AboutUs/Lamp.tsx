@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../utils/cn";
-import useWindowSize from "../../hooks/windowSize";
+import useWindowSize from "../../hooks/useWindowSize";
 
 const LampContainer = ({
   children,

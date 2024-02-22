@@ -10,7 +10,7 @@ const ScrollSnap: React.FC<ScrollSnapProps> = ({ children }) => {
   useScrollSnap({
     scrollRef,
     itemHeight: window.innerHeight,
-    initialSnappedIndex: 2,
+    initialSnappedIndex: 0,
   });
 
   return (

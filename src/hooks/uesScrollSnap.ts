@@ -4,14 +4,14 @@ import createScrollSnap from "scroll-snap";
 export function useScrollSnap({
   itemHeight,
   scrollRef,
-  initialSnappedIndex = 0
+  initialSnappedIndex = 0,
 }: {
   itemHeight: number;
   scrollRef: React.MutableRefObject<HTMLElement | undefined>;
   initialSnappedIndex?: number;
 }) {
   const [snappedIndex, setSnappedIndex] = useState(initialSnappedIndex);
-
+  console.log(snappedIndex, itemHeight);
   const updateSnappedIndex = useCallback(
     (scrollContainer: HTMLElement) =>
       setSnappedIndex(scrollContainer.scrollTop / itemHeight),
@@ -29,7 +29,7 @@ export function useScrollSnap({
       createScrollSnap(
         element,
         {
-          snapDestinationY: `${itemHeight}px`
+          snapDestinationY: `${itemHeight}px`,
         },
         () => updateSnappedIndex(element)
       );

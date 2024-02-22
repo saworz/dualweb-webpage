@@ -1,4 +1,4 @@
-import React, { useRef, LegacyRef } from "react";
+import React, { useRef, LegacyRef, useState } from "react";
 import { useScrollSnap } from "../../hooks/uesScrollSnap";
 
 interface ScrollSnapProps {
@@ -6,11 +6,14 @@ interface ScrollSnapProps {
 }
 
 const ScrollSnap: React.FC<ScrollSnapProps> = ({ children }) => {
+  const unbindListRef = useRef<any>([]);
+
   const scrollRef = useRef<HTMLElement>();
   useScrollSnap({
     scrollRef,
     itemHeight: window.innerHeight,
     initialSnappedIndex: 0,
+    unbindListRef,
   });
 
   return (

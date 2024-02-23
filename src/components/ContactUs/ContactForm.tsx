@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
+import emailjs from "@emailjs/browser";
 
 const ContactFormDiv = styled.div`
   display: flex;
@@ -50,7 +51,7 @@ const FormField = styled.div`
   }
 `;
 
-const InputsField = styled.div`
+const InputsField = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -68,46 +69,59 @@ interface FormData {
 }
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    description: "",
-  });
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const phoneNumberRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value } = e.target;
-    setFormData((prevData: FormData) => ({ ...prevData, [id]: value }));
-  };
+  const sendEmail = () => {
+    emailjs.sendForm('service_67o5noj', 'template_l89hqur', "message", {
+      publicKey: '46B5rJXKRyhvJN0YM',
+    })
+    .then(
+      () => {
+        console.log('SUCCESS!');
+      },
+      (error) => {
+        console.log('FAILED...', error.text);
+      },
+    );
+  }
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-  
   return (
     <ContactFormDiv>
       <FormField>
         <BackgroundGradient className="flex flex-col rounded-[22px] p-2v sm:p-5v bg-gray-200 dark:bg-zinc-900">
           <InputsField>
-            <input id="name" type="text" placeholder="Imię i nazwisko" value={formData.name} onChange={handleInputChange}></input>
+            <input
+              id="name"
+              type="text"
+              placeholder="Imię i nazwisko"
+              ref={nameRef}
+            ></input>
             <BlackLine />
-            <input id="email" type="text" placeholder="Email" value={formData.email} onChange={handleInputChange}></input>
+            <input
+              id="email"
+              type="text"
+              placeholder="Email"
+              ref={emailRef}
+            ></input>
             <BlackLine />
             <input
               id="phoneNumber"
               type="text"
-              placeholder="Numer telefonu" value={formData.phoneNumber} onChange={handleInputChange}
+              placeholder="Numer telefonu"
+              ref={phoneNumberRef}
             ></input>
             <BlackLine />
             <textarea
               id="description"
-              placeholder="W czym możemy Ci pomóc?" value={formData.description} onChange={handleInputChange}
+              placeholder="W czym możemy Ci pomóc?"
+              ref={messageRef}
             ></textarea>
           </InputsField>
 
-          <FormButton />
+          <FormButton clickEvent={sendEmail}/>
         </BackgroundGradient>
       </FormField>
     </ContactFormDiv>

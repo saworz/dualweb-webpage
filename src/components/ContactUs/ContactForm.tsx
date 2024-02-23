@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
@@ -60,25 +60,50 @@ const BlackLine = styled.div`
   margin-bottom: 6vh;
 `;
 
+interface FormData {
+  name: string;
+  email: string;
+  phoneNumber: string;
+  description: string;
+}
+
 const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    phoneNumber: "",
+    description: "",
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prevData: FormData) => ({ ...prevData, [id]: value }));
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+  
   return (
     <ContactFormDiv>
       <FormField>
         <BackgroundGradient className="flex flex-col rounded-[22px] p-2v sm:p-5v bg-gray-200 dark:bg-zinc-900">
           <InputsField>
-            <input id="name" type="text" placeholder="Imię i nazwisko"></input>
+            <input id="name" type="text" placeholder="Imię i nazwisko" value={formData.name} onChange={handleInputChange}></input>
             <BlackLine />
-            <input id="email" type="text" placeholder="Email"></input>
+            <input id="email" type="text" placeholder="Email" value={formData.email} onChange={handleInputChange}></input>
             <BlackLine />
             <input
               id="phoneNumber"
               type="text"
-              placeholder="Numer telefonu"
+              placeholder="Numer telefonu" value={formData.phoneNumber} onChange={handleInputChange}
             ></input>
             <BlackLine />
             <textarea
               id="description"
-              placeholder="W czym możemy Ci pomóc?"
+              placeholder="W czym możemy Ci pomóc?" value={formData.description} onChange={handleInputChange}
             ></textarea>
           </InputsField>
 

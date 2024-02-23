@@ -1,9 +1,5 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 
@@ -11,13 +7,25 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  margin-top: 10px;
+  height: 10vh;
+  max-height: 100px;
+
+  @media (max-width: 1400px) or (max-height: 630px) {
+    margin: 30px;
+  }
 `;
 
 const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
   opacity: 0.85;
-  width: 260px;
-  height: 400px;
+  width: 35vh;
+  height: 65vh;
+  max-width: 260px;
+  max-height: 400px;
   margin: 3vh;
   background-color: white;
   border-radius: 10px;
@@ -26,9 +34,23 @@ const CardContainer = styled.div`
     background-color: #dfdc5d;
     transform: translate(0%, -5%);
   }
+
+  @media (max-width: 1400px) or (max-height: 630px) {
+    width: 32vh;
+    height: 36vh;
+    max-height: 250px;
+    min-width: 180px;
+    min-height: 205px;
+  }
 `;
 const Image = styled.img`
   max-width: 70px;
+`;
+
+const TypographyDescription = styled(Typography)`
+  @media (max-width: 1400px) or (max-height: 630px) {
+    display: none;
+  }
 `;
 
 const MediaCard: React.FC<{
@@ -42,12 +64,12 @@ const MediaCard: React.FC<{
         <Image src={image} />
       </ImageContainer>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" textAlign="center">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <TypographyDescription variant="body2" color="text.secondary" textAlign="center">
           {description}
-        </Typography>
+        </TypographyDescription>
       </CardContent>
     </CardContainer>
   );

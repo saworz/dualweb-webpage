@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
@@ -61,32 +61,34 @@ const BlackLine = styled.div`
   margin-bottom: 6vh;
 `;
 
-interface FormData {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  description: string;
-}
-
 const ContactForm: React.FC = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const phoneNumberRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [loading, setLoading] = useState(false);
 
-  const sendEmail = () => {
-    emailjs.sendForm('service_67o5noj', 'template_l89hqur', "message", {
-      publicKey: '46B5rJXKRyhvJN0YM',
-    })
-    .then(
-      () => {
-        console.log('SUCCESS!');
-      },
-      (error) => {
-        console.log('FAILED...', error.text);
-      },
-    );
-  }
+  useEffect(() => emailjs.init(process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY as string), []);
+  
+  const sendEmail = async (e: any) => {
+    const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
+    const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
+    try {
+      setLoading(true);
+      await emailjs.send(serviceId, templateId, {
+       name: nameRef.current?.value,
+        email: emailRef.current?.value,
+        phoneNumber: phoneNumberRef.current?.value,
+        message: messageRef.current?.value,
+      });
+      console.log("email sent successfully")
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   return (
     <ContactFormDiv>

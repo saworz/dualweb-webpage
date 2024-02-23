@@ -11,15 +11,16 @@ const ImageContainer = styled.div`
   height: 10vh;
   max-height: 100px;
 
-  @media (max-width: 1400px) or (max-height: 630px) {
+  @media (max-width: 1500px) or (max-height: 630px) {
     margin: 30px;
+    margin-bottom: 0px;
   }
 `;
 
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  
   align-items: center;
   opacity: 0.85;
   width: 35vh;
@@ -35,12 +36,13 @@ const CardContainer = styled.div`
     transform: translate(0%, -5%);
   }
 
-  @media (max-width: 1400px) or (max-height: 630px) {
-    width: 32vh;
-    height: 36vh;
+  @media (max-width: 1500px) or (max-height: 630px) {
+    width: 25vh;
+    height: 32vh;
     max-height: 250px;
-    min-width: 180px;
-    min-height: 205px;
+    min-width: 170px;
+    min-height: 220px;
+    justify-content: center;
   }
 `;
 const Image = styled.img`
@@ -48,7 +50,7 @@ const Image = styled.img`
 `;
 
 const TypographyDescription = styled(Typography)`
-  @media (max-width: 1400px) or (max-height: 630px) {
+  @media (max-width: 1500px) or (max-height: 630px) {
     display: none;
   }
 `;

@@ -38,7 +38,7 @@ const CardsContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 1150px) {
+  @media (max-width: 1150px) and (min-height: 530px) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto;

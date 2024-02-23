@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 import Pipeline from "../PipelineBackground/Pipeline";
-import useIsInViewport from "../../hooks/isInViewport";
+import useInViewport from "../../hooks/useInViewport";
 import MediaCard from "./Card";
 import ComputerIMG from "../../assets/services/computer.png";
 import WrenchIMG from "../../assets/services/wrench.png";
@@ -52,9 +52,9 @@ const OurServices: React.FC = () => {
   const animationStopTopRef = useRef(null);
   const animationStopBotRef = useRef(null);
 
-  const midInViewport = useIsInViewport(animationStartRef);
-  const topInViewport = useIsInViewport(animationStopTopRef);
-  const botInViewport = useIsInViewport(animationStopBotRef);
+  const midInViewport = useInViewport(animationStartRef);
+  const topInViewport = useInViewport(animationStopTopRef);
+  const botInViewport = useInViewport(animationStopBotRef);
 
   if (!playAnimation && midInViewport) {
     playAnimation = true;

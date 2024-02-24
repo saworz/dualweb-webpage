@@ -26,7 +26,7 @@ const Images = {
   logoNodeJs: require("../../assets/technologies/nodejs.png"),
 };
 
-const Technologies: React.FC = () => {
+const TechnologiesIcons: React.FC = () => {
   return (
     <>
       <SingleTech>
@@ -65,4 +65,4 @@ const Technologies: React.FC = () => {
   );
 };
 
-export default Technologies;
+export default TechnologiesIcons;

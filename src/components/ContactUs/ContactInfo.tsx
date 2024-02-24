@@ -73,12 +73,14 @@ const BottomText = styled.p`
 
 const ContactInfo = ({
   adres,
-  phoneNumber,
+  contact1,
+  contact2,
   email,
   bottomText,
 }: {
   adres: string;
-  phoneNumber: string;
+  contact1: string;
+  contact2: string
   email: string;
   bottomText: string;
 }) => {
@@ -88,7 +90,8 @@ const ContactInfo = ({
       <h3>Adres</h3>
       <p>{adres}</p>
       <h3>Numer Telefonu</h3>
-      <p>{phoneNumber}</p>
+      <p style={{ marginBottom: 5 }}> {contact1}</p>
+      <p>{contact2}</p>
       <h3>Email</h3>
       <p>{email}</p>
 

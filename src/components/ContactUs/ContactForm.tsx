@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
+import "./toast.css";
 
 const ContactFormDiv = styled.div`
   display: flex;
@@ -68,27 +70,54 @@ const ContactForm: React.FC = () => {
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => emailjs.init(process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY as string), []);
-  
-  const sendEmail = async (e: any) => {
-    const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
-    const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
-    try {
-      setLoading(true);
-      await emailjs.send(serviceId, templateId, {
-       name: nameRef.current?.value,
-        email: emailRef.current?.value,
-        phoneNumber: phoneNumberRef.current?.value,
-        message: messageRef.current?.value,
-      });
-      console.log("email sent successfully")
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  useEffect(
+    () => emailjs.init(process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY as string),
+    []
+  );
 
+  const sendEmail = async (e: any) => {
+    // !!!!!! uncomment to test messages without sending email 
+
+    toast.success("🦄 Wow so easy!", {
+      className: "toast-position",
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+
+    // !!!!!! and comment this part till return
+    //   const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
+    //   const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
+    //   try {
+    //     setLoading(true);
+    //     const sendPromise = new Promise((resolve, reject) => {
+    //       emailjs.send(serviceId, templateId, {
+    //         name: nameRef.current?.value,
+    //         email: emailRef.current?.value,
+    //         phoneNumber: phoneNumberRef.current?.value,
+    //         message: messageRef.current?.value,
+    //       })
+    //         .then((response) => resolve(response))
+    //         .catch((error) => reject(error));
+    //     });
+
+    //     toast.promise(
+    //       sendPromise,
+    //       {
+    //         pending: "Wysyłanie wiadomości...",
+    //         success: "Wiadomość wysłana!",
+    //         error: "Coś poszło nie tak :(",
+    //       }
+    //     )
+    //   } finally {
+    //     setLoading(false);
+    //   }
+  };
 
   return (
     <ContactFormDiv>
@@ -123,7 +152,7 @@ const ContactForm: React.FC = () => {
             ></textarea>
           </InputsField>
 
-          <FormButton clickEvent={sendEmail}/>
+          <FormButton clickEvent={sendEmail} />
         </BackgroundGradient>
       </FormField>
     </ContactFormDiv>

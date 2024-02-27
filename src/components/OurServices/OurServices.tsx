@@ -3,11 +3,16 @@ import styled from "styled-components";
 import Pipeline from "../PipelineBackground/Pipeline";
 import useInViewport from "../../hooks/useInViewport";
 import MediaCard from "./Card";
-import ComputerIMG from "../../assets/services/computer.png";
-import WrenchIMG from "../../assets/services/wrench.png";
-import EngineerIMG from "../../assets/services/engineers.png";
-import HandshakeIMG from "../../assets/services/handshake.png";
-import ShoppingCartIMG from "../../assets/services/shopping_cart.png";
+import { ourServicesData } from "../../constants/ourServicesDictionary";
+import { device } from '../../settings/deviceSize';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, EffectCoverflow } from "swiper/modules";
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
+import { RxArrowTopRight } from "react-icons/rx";
 
 const Background = styled.div`
   position: relative;
@@ -35,8 +40,14 @@ const CardsContainer = styled.div`
   flex-direction: row;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  width: 100%;
+  transform: translate(0, -50%);
+  
+  @media ${device.laptop} {
+    width:50%;
+    transform: translate(50%, -50%);
+  }
 `;
 
 let playAnimation = false;
@@ -68,38 +79,44 @@ const OurServices: React.FC = () => {
       <PipelineResetTriggerBot ref={animationStopBotRef} />
 
       <CardsContainer>
-        <MediaCard
-          title="Strony www i aplikacje internetowe"
-          description="Realizujemy projekty oparte na nowoczesnych technologiach, 
-          gwarantując interaktywne i atrakcyjne rozwiązania, dostosowane do dynamicznie zmieniającego się środowiska online."
-          image={ComputerIMG}
-        />
-        <MediaCard
-          title="Rozbudowa systemów"
-          description="Działamy na rzecz naszych klientów, dostosowując systemy do nowych wymagań i standardów branżowych. 
-          Przeprowadzamy analizę istniejących rozwiązań, identyfikując obszary poprawy i proponując skuteczne strategie rozbudowy."
-          image={WrenchIMG}
-        />
-        <MediaCard
-          title="Doświadczony zespół"
-          description="Rozumiemy unikalne potrzeby i wymagania co pozwala nam dostarczyć rozwiązania odpowiadające najwyższym standardom 
-          jakości. Współpracujemy harmonijnie, wykorzystując kreatywność i zdolności techniczne, aby tworzyć innowacyjne i skuteczne produkty."
-          image={EngineerIMG}
-        />
-        <MediaCard
-          title="Sklepy internetowe"
-          description="Realizujemy projekty sklepów internetowych zapewniając intuicyjne i bezproblemowe doświadczenie zakupowe dla klientów. Nasze podejście opiera się na 
-          wykorzystaniu najnowszych technologii e-commerce, optymalizacji procesów płatności oraz integracji z systemami logistycznymi."
-          image={ShoppingCartIMG}
-        />
-        <MediaCard
-          title="Wsparcie techniczne"
-          description=" Oferujemy zarówno wsparcie online, jak i telefoniczne, zapewniając klientom szybki dostęp do niezbędnej pomocy. Nasza obsługa techniczna obejmuje 
-          monitorowanie wydajności systemów, aktualizacje oprogramowania oraz naprawy awarii."
-          image={HandshakeIMG}
-        />
+        <Swiper
+          breakpoints={{
+            340: {
+              slidesPerView: 1,
+            },
+            700: {
+              slidesPerView: 3,
+              spaceBetween: 5,
+            },
+          }}
+          effect={'coverflow'}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+          }}
+          grabCursor={true}
+          loop={true}
+          slidesPerView={'auto'}
+          centeredSlides={true}
+          pagination={true}
+          modules={[Pagination, EffectCoverflow]}
+          className="mySwiper"
+        >
+          {ourServicesData.map((item) => (
+            <SwiperSlide key={item.title}>
+              <MediaCard
+                title={item.title}
+                description={item.description}
+                image={item.image}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </CardsContainer>
-    </Background>
+    </Background >
   );
 };
 

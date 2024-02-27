@@ -16,7 +16,6 @@ const ImageContainer = styled.div`
 
 const CardContainer = styled.div`
   opacity: 0.85;
-  width: 260px;
   height: 400px;
   margin: 3vh;
   background-color: white;
@@ -42,10 +41,10 @@ const MediaCard: React.FC<{
         <Image src={image} />
       </ImageContainer>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant="h5" component="div" align="center">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" align="center">
           {description}
         </Typography>
       </CardContent>

@@ -1,9 +1,5 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 
@@ -11,10 +7,21 @@ const ImageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
+  margin-top: 10px;
+  height: 10vh;
+  max-height: 100px;
+
+  @media (max-width: 1500px) or (max-height: 630px) {
+    margin: 30px;
+    margin-bottom: 0px;
+  }
 `;
 
 const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
   opacity: 0.85;
   height: 400px;
   margin: 3vh;
@@ -25,9 +32,24 @@ const CardContainer = styled.div`
     background-color: #dfdc5d;
     transform: translate(0%, -5%);
   }
+
+  @media (max-width: 1500px) or (max-height: 630px) {
+    width: 25vh;
+    height: 32vh;
+    max-height: 250px;
+    min-width: 170px;
+    min-height: 220px;
+    justify-content: center;
+  }
 `;
 const Image = styled.img`
   max-width: 70px;
+`;
+
+const TypographyDescription = styled(Typography)`
+  @media (max-width: 1500px) or (max-height: 630px) {
+    display: none;
+  }
 `;
 
 const MediaCard: React.FC<{
@@ -48,7 +70,7 @@ const MediaCard: React.FC<{
           {description}
         </Typography>
       </CardContent>
-    </CardContainer>
+    </CardContainer >
   );
 };
 

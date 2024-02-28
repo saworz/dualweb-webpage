@@ -1,46 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import { FormBreak } from "./ContactUs";
 
 const ContactInfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 50%;
+  margin-top: 25px;
   color: white;
-  padding-top: 9vh;
-
-  @media (min-width: 640px) {
-    padding-top: 8vh;
-  }
-
-  @media (min-width: 1024px) {
-    padding-top: 12vh;
-  }
+  padding-top: 8vh;
 
   text-align: center;
   font-family: "Montserrat";
 
   & h2 {
-    font-size: 8vh;
-
-    @media (max-width: 640px) {
-      font-size: 6vh;
-    }
-
-    @media (max-width: 420px) {
-      font-size: 4vh;
-    }
-
+    font-size: 6vh;
     margin-bottom: 5vh;
   }
 
   & h3 {
     font-size: 4vh;
-
-    @media (max-width: 420px) {
-      font-size: 3vh;
-    }
-
     color: #dddddd;
     margin-bottom: 1vh;
   }
@@ -51,7 +31,7 @@ const ContactInfoDiv = styled.div`
     max-width: 600px;
     width: 75%;
 
-    @media (min-width: 768px) {
+    @media (min-width: 1024px) {
       max-width: 450px;
       width: 50%;
     }
@@ -60,15 +40,34 @@ const ContactInfoDiv = styled.div`
     margin-right: auto;
     margin-bottom: 4vh;
   }
+
+  @media (max-width: ${FormBreak}) {
+    height: 50%;
+    width: 100%;
+    margin-top: 1vh;
+    padding-top: 6vh;
+
+    & h2 {
+      margin: 0;
+    }
+
+    & p {
+      margin-bottom: 2vh;
+    }
+  }
 `;
 
 const BottomText = styled.p`
   color: #d6d6d6;
-  width: 30%;
+  width: 50%;
 
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3vh;
+  margin-top: 2vh;
+
+  @media (max-width: ${FormBreak}) {
+    display: none;
+  }
 `;
 
 const ContactInfo = ({
@@ -80,7 +79,7 @@ const ContactInfo = ({
 }: {
   adres: string;
   contact1: string;
-  contact2: string
+  contact2: string;
   email: string;
   bottomText: string;
 }) => {

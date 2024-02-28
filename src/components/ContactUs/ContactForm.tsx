@@ -4,6 +4,7 @@ import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { FormBreak } from "./ContactUs";
 import "./toast.css";
 
 const ContactFormDiv = styled.div`
@@ -13,13 +14,21 @@ const ContactFormDiv = styled.div`
   height: 100%;
   width: 50%;
   font-family: "Montserrat";
+
+  margin-top: 25px;
+
+  @media(max-width: ${FormBreak}) {
+    height: 50%;
+    width: 100%;
+    margin-top: 1vh;
+  }
 `;
 
 const FormField = styled.div`
   width: 75%;
 
-  @media (max-width: 420px) {
-    width: 90%;
+  @media (max-width: 1270px) {
+    width: 95%;
   }
 
   height: 85%;
@@ -51,6 +60,19 @@ const FormField = styled.div`
     border: 1px solid black;
     font-size: 2vh;
   }
+
+  @media(max-width: ${FormBreak}) {
+    width: 80%;
+
+    & textarea {
+      height: 10vh;
+      margin-bottom: 2vh;
+    }
+
+    & button {
+      margin-top: 0;
+    }
+  }
 `;
 
 const InputsField = styled.form`
@@ -61,6 +83,10 @@ const InputsField = styled.form`
 const BlackLine = styled.div`
   border-top: 2px solid black;
   margin-bottom: 6vh;
+
+  @media(max-width: ${FormBreak}) {
+    margin-bottom: 1vh;
+  }
 `;
 
 const ContactForm: React.FC = () => {
@@ -140,7 +166,7 @@ const ContactForm: React.FC = () => {
   return (
     <ContactFormDiv>
       <FormField>
-        <BackgroundGradient className="flex flex-col rounded-[22px] p-2v sm:p-5v bg-gray-200 dark:bg-zinc-900">
+        <BackgroundGradient className="flex flex-col rounded-[22px] pl-5v pr-5v pt-2v pb-2v formBreak:p-5v bg-gray-200 dark:bg-zinc-900">
           <InputsField>
             <input
               id="name"

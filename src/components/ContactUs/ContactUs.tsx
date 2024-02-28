@@ -3,12 +3,18 @@ import styled from "styled-components";
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 
+export const FormBreak = '900px';
+
 const Background = styled.div`
   display: flex;
   flex-direction: row;
   height: 100vh;
   width: 100%;
   background-color: #3b3b41;
+
+  @media(max-width: ${FormBreak}) {
+    flex-direction: column;
+  }
 `;
 
 const bottomText =

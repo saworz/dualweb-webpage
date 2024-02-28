@@ -20,7 +20,7 @@ const ContactFormDiv = styled.div`
   @media(max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
-    margin-top: 1vh;
+    margin-top: 0;
   }
 `;
 

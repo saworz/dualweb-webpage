@@ -47,12 +47,12 @@ const ContactInfoDiv = styled.div`
     margin-top: 1vh;
     padding-top: 6vh;
 
-    & h2 {
+    & h2, h3 {
       margin: 0;
     }
 
     & p {
-      margin-bottom: 2vh;
+      margin-bottom: 1vh;
     }
   }
 `;

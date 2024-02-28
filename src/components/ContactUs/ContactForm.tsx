@@ -20,6 +20,9 @@ const ContactFormDiv = styled.div`
   @media(max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 0;
   }
 `;

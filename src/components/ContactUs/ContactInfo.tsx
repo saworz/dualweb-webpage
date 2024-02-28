@@ -44,8 +44,8 @@ const ContactInfoDiv = styled.div`
   @media (max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
-    margin-top: 1vh;
-    padding-top: 6vh;
+    margin-top: 25px;
+    padding-top: 5vh;
 
     & h2, h3 {
       margin: 0;

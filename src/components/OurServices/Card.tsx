@@ -2,6 +2,7 @@ import * as React from "react";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
+import { device } from '../../settings/deviceSize';
 
 const ImageContainer = styled.div`
   display: flex;
@@ -20,29 +21,20 @@ const ImageContainer = styled.div`
 const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
-  
   align-items: center;
   opacity: 0.85;
-  width: 35vh;
-  height: 65vh;
-  max-width: 260px;
-  max-height: 400px;
-  margin: 3vh;
+  height: 400px;
+  margin: 30px 20px;
   background-color: white;
   border-radius: 10px;
-
+  
   &:hover {
     background-color: #dfdc5d;
     transform: translate(0%, -5%);
   }
-
-  @media (max-width: 1500px) or (max-height: 630px) {
-    width: 25vh;
-    height: 32vh;
-    max-height: 250px;
-    min-width: 170px;
-    min-height: 220px;
-    justify-content: center;
+  
+  @media ${device.laptop} {
+    height: 400px;
   }
 `;
 const Image = styled.img`
@@ -66,14 +58,14 @@ const MediaCard: React.FC<{
         <Image src={image} />
       </ImageContainer>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" textAlign="center">
+        <Typography gutterBottom variant="h5" component="div" align="center">
           {title}
         </Typography>
-        <TypographyDescription variant="body2" color="text.secondary" textAlign="center">
+        <Typography variant="body2" color="text.secondary" align="center">
           {description}
-        </TypographyDescription>
+        </Typography>
       </CardContent>
-    </CardContainer>
+    </CardContainer >
   );
 };
 

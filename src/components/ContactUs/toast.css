@@ -1,4 +1,9 @@
 .toast-position {
     top: 7vh !important;
     right: 3vh !important;
+
+    @media(max-width: 480px) {
+      top: 0 !important;
+      right: 0 !important;
+    }
   }

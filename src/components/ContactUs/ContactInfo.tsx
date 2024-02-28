@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FormBreak } from "./ContactUs";
+import { formBreak } from "../../settings/deviceSize";
 
 const ContactInfoDiv = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ const ContactInfoDiv = styled.div`
     margin-bottom: 4vh;
   }
 
-  @media (max-width: ${FormBreak}) {
+  @media (max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
     margin-top: 1vh;
@@ -65,7 +65,7 @@ const BottomText = styled.p`
   margin-right: auto;
   margin-top: 2vh;
 
-  @media (max-width: ${FormBreak}) {
+  @media (max-width: ${formBreak}) {
     display: none;
   }
 `;

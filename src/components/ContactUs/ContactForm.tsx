@@ -4,7 +4,7 @@ import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
-import { FormBreak } from "./ContactUs";
+import { formBreak } from "../../settings/deviceSize";
 import "./toast.css";
 
 const ContactFormDiv = styled.div`
@@ -17,7 +17,7 @@ const ContactFormDiv = styled.div`
 
   margin-top: 25px;
 
-  @media(max-width: ${FormBreak}) {
+  @media(max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
     margin-top: 1vh;
@@ -61,7 +61,7 @@ const FormField = styled.div`
     font-size: 2vh;
   }
 
-  @media(max-width: ${FormBreak}) {
+  @media(max-width: ${formBreak}) {
     width: 80%;
 
     & textarea {
@@ -84,7 +84,7 @@ const BlackLine = styled.div`
   border-top: 2px solid black;
   margin-bottom: 6vh;
 
-  @media(max-width: ${FormBreak}) {
+  @media(max-width: ${formBreak}) {
     margin-bottom: 1vh;
   }
 `;
@@ -166,7 +166,7 @@ const ContactForm: React.FC = () => {
   return (
     <ContactFormDiv>
       <FormField>
-        <BackgroundGradient className="flex flex-col rounded-[22px] pl-5v pr-5v pt-2v pb-2v formBreak:p-5v bg-gray-200 dark:bg-zinc-900">
+        <BackgroundGradient className="flex flex-col rounded-[22px] pl-3v pr-3v pt-2v pb-2v formBreak:p-5v bg-gray-200 dark:bg-zinc-900">
           <InputsField>
             <input
               id="name"

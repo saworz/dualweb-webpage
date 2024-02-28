@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
-
-export const FormBreak = '900px';
+import { formBreak } from "../../settings/deviceSize";
 
 const Background = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Background = styled.div`
   width: 100%;
   background-color: #3b3b41;
 
-  @media(max-width: ${FormBreak}) {
+  @media(max-width: ${formBreak}) {
     flex-direction: column;
   }
 `;

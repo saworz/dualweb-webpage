@@ -13,7 +13,9 @@ import "./index.css";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <ToastContainer theme="dark"/>
+      <ToastContainer 
+        theme="dark"
+        limit={3}/>
       <Menu />
 
       <ScrollSnap>

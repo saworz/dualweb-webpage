@@ -19,3 +19,5 @@ const size = {
     desktop: `(min-width: ${size.desktop})`,
     desktopL: `(min-width: ${size.desktop})`
   };
+
+  export const formBreak = '900px';

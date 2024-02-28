@@ -4,6 +4,7 @@ import { BackgroundGradient } from "./BackgroundGradient";
 import FormButton from "./FormButton";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
+import { formBreak } from "../../settings/deviceSize";
 import "./toast.css";
 
 const ContactFormDiv = styled.div`
@@ -13,13 +14,21 @@ const ContactFormDiv = styled.div`
   height: 100%;
   width: 50%;
   font-family: "Montserrat";
+
+  margin-top: 25px;
+
+  @media(max-width: ${formBreak}) {
+    height: 50%;
+    width: 100%;
+    margin-top: 1vh;
+  }
 `;
 
 const FormField = styled.div`
   width: 75%;
 
-  @media (max-width: 420px) {
-    width: 90%;
+  @media (max-width: 1270px) {
+    width: 95%;
   }
 
   height: 85%;
@@ -51,6 +60,19 @@ const FormField = styled.div`
     border: 1px solid black;
     font-size: 2vh;
   }
+
+  @media(max-width: ${formBreak}) {
+    width: 80%;
+
+    & textarea {
+      height: 10vh;
+      margin-bottom: 2vh;
+    }
+
+    & button {
+      margin-top: 0;
+    }
+  }
 `;
 
 const InputsField = styled.form`
@@ -61,6 +83,10 @@ const InputsField = styled.form`
 const BlackLine = styled.div`
   border-top: 2px solid black;
   margin-bottom: 6vh;
+
+  @media(max-width: ${formBreak}) {
+    margin-bottom: 1vh;
+  }
 `;
 
 const ContactForm: React.FC = () => {
@@ -96,51 +122,51 @@ const ContactForm: React.FC = () => {
     }
 
     // !!!!!! uncomment to test messages without sending email 
-    // toast.success("🦄 Wow so easy!", {
-    //   className: "toast-position",
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    // });
+    toast.success("🦄 Wow so easy!", {
+      className: "toast-position",
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
-    // !!!!!! and comment this part till return
-      const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
-      const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
-      try {
-        setLoading(true);
-        const sendPromise = new Promise((resolve, reject) => {
-          emailjs.send(serviceId, templateId, {
-            name: nameRef.current?.value,
-            email: emailRef.current?.value,
-            phoneNumber: phoneNumberRef.current?.value,
-            message: messageRef.current?.value,
-          })
-            .then((response) => resolve(response))
-            .catch((error) => reject(error));
-        });
+    // !!!!!! and comment this part till last bracket
+  //     const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
+  //     const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
+  //     try {
+  //       setLoading(true);
+  //       const sendPromise = new Promise((resolve, reject) => {
+  //         emailjs.send(serviceId, templateId, {
+  //           name: nameRef.current?.value,
+  //           email: emailRef.current?.value,
+  //           phoneNumber: phoneNumberRef.current?.value,
+  //           message: messageRef.current?.value,
+  //         })
+  //           .then((response) => resolve(response))
+  //           .catch((error) => reject(error));
+  //       });
 
-        toast.promise(
-          sendPromise,
-          {
-            pending: "Wysyłanie wiadomości...",
-            success: "Wiadomość wysłana!",
-            error: "Coś poszło nie tak :(",
-          }
-        )
-      } finally {
-        setLoading(false);
-      }
+  //       toast.promise(
+  //         sendPromise,
+  //         {
+  //           pending: "Wysyłanie wiadomości...",
+  //           success: "Wiadomość wysłana!",
+  //           error: "Coś poszło nie tak :(",
+  //         }
+  //       )
+  //     } finally {
+  //       setLoading(false);
+  //     }
   };
 
   return (
     <ContactFormDiv>
       <FormField>
-        <BackgroundGradient className="flex flex-col rounded-[22px] p-2v sm:p-5v bg-gray-200 dark:bg-zinc-900">
+        <BackgroundGradient className="flex flex-col rounded-[22px] pl-3v pr-3v pt-2v pb-2v formBreak:p-5v bg-gray-200 dark:bg-zinc-900">
           <InputsField>
             <input
               id="name"

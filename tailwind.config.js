@@ -5,7 +5,10 @@ module.exports = {
     extend: {   
       fontFamily: {
         'montserrat': ['Montserrat', 'sans-serif'],
-      }, 			
+      },
+      screens: {
+        formBreak: '900px',
+      },
       padding: {
         "1v" : "1vh",
         "2v" : "2vh",

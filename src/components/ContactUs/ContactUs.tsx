@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
+import { formBreak } from "../../settings/deviceSize";
 
 const Background = styled.div`
   display: flex;
@@ -9,6 +10,10 @@ const Background = styled.div`
   height: 100vh;
   width: 100%;
   background-color: #3b3b41;
+
+  @media(max-width: ${formBreak}) {
+    flex-direction: column;
+  }
 `;
 
 const bottomText =

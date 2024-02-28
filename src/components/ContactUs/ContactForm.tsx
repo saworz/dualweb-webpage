@@ -122,45 +122,45 @@ const ContactForm: React.FC = () => {
     }
 
     // !!!!!! uncomment to test messages without sending email 
-    // toast.success("🦄 Wow so easy!", {
-    //   className: "toast-position",
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "dark",
-    // });
+    toast.success("🦄 Wow so easy!", {
+      className: "toast-position",
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
 
-    // !!!!!! and comment this part till return
-      const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
-      const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
-      try {
-        setLoading(true);
-        const sendPromise = new Promise((resolve, reject) => {
-          emailjs.send(serviceId, templateId, {
-            name: nameRef.current?.value,
-            email: emailRef.current?.value,
-            phoneNumber: phoneNumberRef.current?.value,
-            message: messageRef.current?.value,
-          })
-            .then((response) => resolve(response))
-            .catch((error) => reject(error));
-        });
+    // !!!!!! and comment this part till last bracket
+  //     const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
+  //     const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
+  //     try {
+  //       setLoading(true);
+  //       const sendPromise = new Promise((resolve, reject) => {
+  //         emailjs.send(serviceId, templateId, {
+  //           name: nameRef.current?.value,
+  //           email: emailRef.current?.value,
+  //           phoneNumber: phoneNumberRef.current?.value,
+  //           message: messageRef.current?.value,
+  //         })
+  //           .then((response) => resolve(response))
+  //           .catch((error) => reject(error));
+  //       });
 
-        toast.promise(
-          sendPromise,
-          {
-            pending: "Wysyłanie wiadomości...",
-            success: "Wiadomość wysłana!",
-            error: "Coś poszło nie tak :(",
-          }
-        )
-      } finally {
-        setLoading(false);
-      }
+  //       toast.promise(
+  //         sendPromise,
+  //         {
+  //           pending: "Wysyłanie wiadomości...",
+  //           success: "Wiadomość wysłana!",
+  //           error: "Coś poszło nie tak :(",
+  //         }
+  //       )
+  //     } finally {
+  //       setLoading(false);
+  //     }
   };
 
   return (

@@ -18,7 +18,19 @@ const Background = styled.div`
   display: flex;
   position: relative;
   background:no-repeat url(${BackgroundIMG});
-  background-size: 100% 100%;
+  background-size: cover;
+  background-position-y: 25px;
+  background-color: #010503ff;
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+`
+const BlackCover = styled.div`
+  display: flex;
+  position: absolute;
+  top: 25px;
+  height: 25px;
+  width: 100%;
+  background-color: #010503ff;
 `
 
 const TextContainer = styled.div`
@@ -49,6 +61,7 @@ const BadgesContainer = styled.div`
 const Technologies = () => {
   return (
     <Background>
+      <BlackCover/>
       <RightSideContainer>
       <TextContainer>
         <p>Odwiedź naszą stronę już dziś i skorzystaj z naszych usług tworzenia stron internetowych! 

@@ -8,6 +8,7 @@ module.exports = {
       },
       screens: {
         formBreak: '900px',
+        formWide: '2000px',
       },
       padding: {
         "1v" : "1vh",

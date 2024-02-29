@@ -31,7 +31,7 @@ const ContactInfoDiv = styled.div`
     max-width: 600px;
     width: 75%;
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1270px) {
       max-width: 450px;
       width: 50%;
     }
@@ -42,17 +42,23 @@ const ContactInfoDiv = styled.div`
   }
 
   @media (max-width: ${formBreak}) {
-    height: 50%;
+    height: 40%;
     width: 100%;
-    margin-top: 25px;
-    padding-top: 5vh;
-
-    & h2, h3 {
-      margin: 0;
+    margin-top: 1vh;
+    padding-top: 6vh;
+    margin-bottom: 20px;
+    
+    & h2 {
+      display: none;
     }
 
+    & h3 {
+      margin-top: 1vh;
+      margin-bottom: 0;
+    }
+    
     & p {
-      margin-bottom: 1vh;
+      margin-bottom: 0;
     }
   }
 `;
@@ -64,7 +70,7 @@ const BottomText = styled.p`
   margin-left: auto;
   margin-right: auto;
   margin-top: 2vh;
-
+  
   @media (max-width: ${formBreak}) {
     display: none;
   }
@@ -89,7 +95,7 @@ const ContactInfo = ({
       <h3>Adres</h3>
       <p>{adres}</p>
       <h3>Numer Telefonu</h3>
-      <p style={{ marginBottom: 5 }}> {contact1}</p>
+      <p>{contact1}</p>
       <p>{contact2}</p>
       <h3>Email</h3>
       <p>{email}</p>

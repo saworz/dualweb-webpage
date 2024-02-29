@@ -36,7 +36,7 @@ const Pipeline = ({animationSeconds, slowDownSteps, animationTrigger}) => {
   const rangeWidth = 2;
   const baseHue = 180;
   const rangeHue = 60;
-  const backgroundColor = 'hsla(150,80%,1%,1)';
+  const backgroundColor = 'hsla(150, 67%, 1%, 1)';
 
   const canvasARef = useRef(null);
   const canvasBRef = useRef(null);
@@ -131,7 +131,7 @@ const Pipeline = ({animationSeconds, slowDownSteps, animationTrigger}) => {
     ctxBRef.current.drawImage(canvasARef.current, 0, 0);
 
     centerRef.current[0] = 0.5 * innerWidth;
-    centerRef.current[1] = 0.5 * innerHeight;
+    centerRef.current[1] = 0.5 * innerHeight + 25;
   };
 
   const initPipes = () => {

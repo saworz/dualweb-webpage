@@ -43,6 +43,7 @@ const CardsContainer = styled.div`
   bottom: 0;
   height: 80vh;
   width: 100%;
+  margin-top: 25px;
   transform: translate(0, -50%);
   
   @media ${device.laptop} {

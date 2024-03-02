@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import BackgroundIMG from "../../assets/laptop.jpeg"
+import LaptopBackgroundLowRes from "../../assets/laptop-low-res.jpeg"
+import LaptopBackgroundHighRes from "../../assets/laptop.jpeg"
 import TechnologyIcons from "./Icons";
 
 const RightSideContainer = styled.div`
@@ -17,13 +19,24 @@ const Background = styled.div`
   width: 100%;
   display: flex;
   position: relative;
-  background:no-repeat url(${BackgroundIMG});
+  z-index: -200;
+  /* background:no-repeat url(${LaptopBackgroundHighRes
+  });
   background-size: cover;
-  background-position-y: 25px;
+  background-position-y: 25px; */
   background-color: #010503ff;
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
 `
+
+const BackgroundImage = styled.img`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 25px;
+  z-index: -100;
+`;
+
 const BlackCover = styled.div`
   display: flex;
   position: absolute;
@@ -59,8 +72,25 @@ const BadgesContainer = styled.div`
 `;
 
 const Technologies = () => {
+  const [imageDownloaded, setImageDownloaded] = useState(false);
+
+  const handleDownload = () => {
+    setImageDownloaded(true);
+  };
+
   return (
     <Background>
+        {!imageDownloaded && (<BackgroundImage
+        src={LaptopBackgroundLowRes}
+      />)}
+
+      <BackgroundImage
+        src={LaptopBackgroundHighRes}
+        style={{ 
+          display: imageDownloaded ? 'block' : 'none' }}
+        onLoad={handleDownload}
+      />
+
       <BlackCover/>
       <RightSideContainer>
       <TextContainer>

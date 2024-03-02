@@ -15,11 +15,8 @@ const Background = styled.div`
   align-items: center;
 `;
 
-interface BackgroundImageProps {
-  faded?: boolean;
-}
 
-const BackgroundImage = styled.img<BackgroundImageProps>`
+const BackgroundImage = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -51,7 +48,6 @@ const Header: React.FC = () => {
   const [imageDownloaded, setImageDownloaded] = useState(false);
 
   const handleDownload = () => {
-    console.log('changin!')
     setImageDownloaded(true);
   };
 
@@ -59,15 +55,14 @@ const Header: React.FC = () => {
     <Background>
       {!imageDownloaded && (<BackgroundImage
         src={HeaderBackgroundLowRes}
-        loading="lazy"
       />)}
 
       <BackgroundImage
         src={HeaderBackgroundHighRes}
-        loading="lazy"
         style={{ 
           display: imageDownloaded ? 'block' : 'none' }}
         onLoad={handleDownload}
+        onError={() => console.error("Error loading image")}
       />
 
       <ContentWrapper>

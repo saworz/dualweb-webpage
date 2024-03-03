@@ -24,9 +24,9 @@ const LampContainer = ({
     if (triggerInViewport) {
       controls.start({ opacity: 1, width: lightSettings.lampFinalWidth });
     } else {
-      controls.start({ opacity: 0.5, width: lightSettings.lampInitialWidth })
+      controls.start({ opacity: 0.5, width: lightSettings.lampInitialWidth });
     }
-  }, [triggerInViewport])
+  }, [triggerInViewport]);
 
   const textSettings = {
     slideUpTime: 1.5,
@@ -134,7 +134,7 @@ const LampContainer = ({
       </div>
 
       <div className="absolute top 1/2 scale-y-125 z-50 flex flex-col items-center px-5 sm:w-4/5 md:w-3/4 lg:w-1/2">
-        <motion.h1
+        {/* <motion.h1
           initial={{ opacity: 0.5, y: textSettings.slideDistance }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
@@ -143,9 +143,11 @@ const LampContainer = ({
             ease: "easeInOut",
           }}
           className="mt-12 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-white text-center font-medium tracking-tight text-transparent text-1xl md:text-xl font-montserrat"
-        >
+        > */}
+        <div className="mt-12 bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-white text-center font-medium tracking-tight text-transparent text-1xl md:text-xl font-montserrat">
           {children}
-        </motion.h1>
+        </div>
+        {/* </motion.h1> */}
       </div>
     </div>
   );

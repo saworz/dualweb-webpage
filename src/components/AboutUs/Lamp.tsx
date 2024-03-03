@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 import { cn } from "../../utils/cn";
 import useWindowSize from "../../hooks/useWindowSize";
+import useInViewport from "../../hooks/useInViewport";
 
 const LampContainer = ({
   children,
@@ -14,6 +15,18 @@ const LampContainer = ({
   className?: string;
 }) => {
   const windowSize = useWindowSize();
+
+  const controls = useAnimation();
+  const animationStartRef = useRef(null);
+  const triggerInViewport = useInViewport(animationStartRef);
+
+  useEffect(() => {
+    if (triggerInViewport) {
+      controls.start({ opacity: 1, width: lightSettings.lampFinalWidth });
+    } else {
+      controls.start({ opacity: 0.5, width: lightSettings.lampInitialWidth })
+    }
+  }, [triggerInViewport])
 
   const textSettings = {
     slideUpTime: 1.5,
@@ -54,7 +67,7 @@ const LampContainer = ({
         {/* Two motions div for setting light */}
         <motion.div
           initial={{ opacity: 0.5, width: lightSettings.lampInitialWidth }}
-          whileInView={{ opacity: 1, width: lightSettings.lampFinalWidth }}
+          animate={controls}
           transition={{
             delay: lightSettings.lightUpDelay,
             duration: lightSettings.lightUpTime,
@@ -70,7 +83,7 @@ const LampContainer = ({
         </motion.div>
         <motion.div
           initial={{ opacity: 0.5, width: lightSettings.lampInitialWidth }}
-          whileInView={{ opacity: 1, width: lightSettings.lampFinalWidth }}
+          animate={controls}
           transition={{
             delay: lightSettings.lightUpDelay,
             duration: lightSettings.lightUpTime,
@@ -110,6 +123,7 @@ const LampContainer = ({
             ease: "easeInOut",
           }}
           className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-cyan-400 "
+          ref={animationStartRef}
         ></motion.div>
 
         <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-slate-950 "></div>

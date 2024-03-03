@@ -22,19 +22,21 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  opacity: 0.85;
   height: 400px;
   margin: 30px 20px;
-  background-color: white;
+  background-color: rgba(255,255,255, 1);
   border-radius: 10px;
   
-  &:hover {
-    background-color: #dfdc5d;
-    transform: translate(0%, -5%);
-  }
-  
-  @media ${device.laptop} {
-    height: 400px;
+  // &:hover {
+    //   background-color: #dfdc5d;
+    //   transform: translate(0%, -5%);
+    // }
+    
+    @media ${device.laptop} {
+      height: 400px;
+      width: 500px;
+      background-color: rgba(255,255,255, .85);
+
   }
 `;
 const Image = styled.img`

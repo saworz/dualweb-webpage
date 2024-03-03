@@ -1,18 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import Pipeline from "../PipelineBackground/Pipeline";
 import useInViewport from "../../hooks/useInViewport";
 import MediaCard from "./Card";
 import { ourServicesData } from "../../constants/ourServicesDictionary";
 import { device } from '../../settings/deviceSize';
+import useWindowSize from '../../hooks/useWindowSize';
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectCoverflow } from "swiper/modules";
+import { Pagination, EffectCube, Autoplay } from "swiper/modules";
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
 
-import { RxArrowTopRight } from "react-icons/rx";
 
 const Background = styled.div`
   position: relative;
@@ -56,6 +56,8 @@ const CardsContainer = styled.div`
 let playAnimation = false;
 
 const OurServices: React.FC = () => {
+  const windowSize = useWindowSize();
+
   const animationStartRef = useRef(null);
   const animationStopTopRef = useRef(null);
   const animationStopBotRef = useRef(null);
@@ -64,11 +66,18 @@ const OurServices: React.FC = () => {
   const topInViewport = useInViewport(animationStopTopRef);
   const botInViewport = useInViewport(animationStopBotRef);
 
+
   if (!playAnimation && midInViewport) {
     playAnimation = true;
   } else if (playAnimation && !botInViewport && !topInViewport) {
     playAnimation = false;
   }
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 700);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth <= 700);
+  }, [windowSize]);
 
   return (
     <Background>
@@ -89,23 +98,24 @@ const OurServices: React.FC = () => {
             },
             700: {
               slidesPerView: 3,
-              spaceBetween: 5,
             },
           }}
-          effect={'coverflow'}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
+          effect={isMobile ? 'cube' : 'slide'}
+          cubeEffect={{
+            shadow: true,
             slideShadows: true,
+            shadowOffset: 20,
+            shadowScale: 0.94,
+          }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
           }}
           grabCursor={true}
           loop={true}
-          slidesPerView={'auto'}
           centeredSlides={true}
           pagination={true}
-          modules={[Pagination, EffectCoverflow]}
+          modules={[Pagination, EffectCube, Autoplay]}
           className="mySwiper"
         >
           {ourServicesData.map((item) => (

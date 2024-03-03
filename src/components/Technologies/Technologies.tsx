@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import LaptopBackgroundLowRes from "../../assets/laptop-low-res.jpeg"
-import LaptopBackgroundHighRes from "../../assets/laptop.jpeg"
+// import LaptopBackgroundLowRes from "../../assets/laptop-low-res.jpeg"
+// import LaptopBackgroundHighRes from "../../assets/laptop.jpeg"
 import TechnologyIcons from "./Icons";
+
+const LaptopBackgroundLowRes = require("../../assets/laptop-low-res.jpeg")
+const LaptopBackgroundHighRes = require("../../assets/laptop.jpeg")
 
 const RightSideContainer = styled.div`
   position: absolute;
@@ -27,6 +30,7 @@ const Background = styled.div`
   background-color: #010503ff;
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
+  
 `
 
 const BackgroundImage = styled.img`

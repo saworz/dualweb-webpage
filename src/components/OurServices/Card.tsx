@@ -60,7 +60,7 @@ const MediaCard: React.FC<{
         <Image src={image} />
       </ImageContainer>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div" align="center">
+        <Typography gutterBottom variant="h5" component="div" align="center" marginBottom="1rem">
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary" align="center">

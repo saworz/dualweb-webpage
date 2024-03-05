@@ -17,7 +17,7 @@ const Background = styled.div`
 `;
 
 const bottomText =
-  "Razem z nami przełamiesz granice online i stworzysz trwałe wrażenie w sieci. Dołącz do Dualweb i odkryj, jak możemy pomóc Ci osiągnąć sukces online.";
+  "Razem z nami otworzysz swój biznes na nowe środowisko. Dołącz do Dualweb i odkryj, jak możemy pomóc Ci osiągnąć sukces online.";
   
 const ContactUs: React.FC = () => {
   return (

@@ -8,11 +8,11 @@ import { device } from '../../settings/deviceSize';
 import useWindowSize from '../../hooks/useWindowSize';
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectCube, Autoplay } from "swiper/modules";
+import { Pagination, EffectCube, Autoplay, Navigation } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
-
+import 'swiper/css/navigation';
 
 const Background = styled.div`
   position: relative;
@@ -116,7 +116,8 @@ const OurServices: React.FC = () => {
           loop={true}
           centeredSlides={true}
           pagination={true}
-          modules={[Pagination, EffectCube, Autoplay]}
+          navigation={true}
+          modules={[Pagination, EffectCube, Autoplay, Navigation]}
           className="mySwiper"
         >
           {ourServicesData.map((item) => (

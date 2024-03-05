@@ -24,8 +24,8 @@ const ContactUs: React.FC = () => {
     <Background>
       <ContactInfo
         adres="Bydgoszcz, Polska"
-        contact1="507 960 034"
-        contact2="603 436 546"
+        contact1="507 960 034 - Michał"
+        contact2="603 436 546 - Jędrek"
         email="info@dualweb.pl"
         bottomText={bottomText}
       />

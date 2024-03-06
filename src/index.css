@@ -31,7 +31,7 @@ body {
   justify-content: center;
 }
 
-.swiper {
+.our-services .swiper {
   width: 300px;
   height: 500px;
 
@@ -48,4 +48,37 @@ body {
 .swiper-slide img {
   display: block;
   width: 100%;
+}
+
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next {
+  position: fixed;
+  top: 45%;
+  color: #fff;
+  height: 45px;
+
+  @media (min-width: 700px) {
+    height: 45px;
+    top: 40%;
+  }
+}
+
+.swiper .swiper-button-prev {
+  left: 15px;
+
+  @media (min-width: 700px) {
+    left: -35px;
+  }
+}
+
+.swiper .swiper-button-next {
+  right: 15px;
+
+  @media (min-width: 700px) {
+    right: -35px;
+  }
+}
+
+.swiper .swiper-pagination-bullet-active {
+  background-color: #fff;
 }

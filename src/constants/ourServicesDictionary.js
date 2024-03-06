@@ -6,8 +6,8 @@ import ShoppingCartIMG from "../assets/services/shopping_cart.png";
 
 export const ourServicesData = [
     {
-        title: 'Strony www i aplikacje internetowe',
-        description: 'Realizujemy projekty oparte na nowoczesnych technologiach, gwarantując interaktywne i atrakcyjne rozwiązania, dostosowane do dynamicznie zmieniającego się środowiska online.',
+        title: 'Strony www',
+        description: 'Realizujemy projekty stron www i aplikacji internetowych, gwarantując spersonalizowane, responsywne rozwiązania. Rozbudowujemy strony o systemy rezerwacji i zamówień, aby zapewnić docelowym klientom jak największą swobodę.',
         image: ComputerIMG,
     },
     {
@@ -17,7 +17,7 @@ export const ourServicesData = [
     },
     {
         title: 'Doświadczony zespół',
-        description: 'Rozumiemy unikalne potrzeby i wymagania co pozwala nam dostarczyć rozwiązania odpowiadające najwyższym standardom jakości. Współpracujemy harmonijnie, wykorzystując kreatywność i zdolności techniczne, aby tworzyć innowacyjne i skuteczne produkty.',
+        description: 'Dzięki współpracy ze specjalistami z zakresu programowania, designu, UI/UX i zarządzania projektami jesteśmy przygotowani do dostarczania najwyższej klasy oprogramowania. Wspólnie stworzyliśmy wiele projektów komercyjnych i oczekujemy kolejnych wyzwań.',
         image: EngineerIMG,
     },
     {

@@ -17,7 +17,7 @@ const ContactFormDiv = styled.div`
 
   margin-top: 25px;
 
-  @media(max-width: ${formBreak}) {
+  @media (max-width: ${formBreak}) {
     height: 50%;
     width: 100%;
     margin-top: 0;
@@ -59,7 +59,7 @@ const FormField = styled.div`
     font-size: 2vh;
   }
 
-  @media(max-width: ${formBreak}) {
+  @media (max-width: ${formBreak}) {
     width: 90%;
     max-width: 500px;
 
@@ -83,7 +83,7 @@ const BlackLine = styled.div`
   border-top: 2px solid black;
   margin-bottom: 6vh;
 
-  @media(max-width: ${formBreak}) {
+  @media (max-width: ${formBreak}) {
     margin-bottom: 4vh;
   }
 `;
@@ -100,7 +100,7 @@ const ContactForm: React.FC = () => {
     []
   );
 
-  const sendEmail = async (e: any) => {
+  const validateEmptyFields = () => {
     if (
       !nameRef.current?.value ||
       !emailRef.current?.value ||
@@ -117,10 +117,38 @@ const ContactForm: React.FC = () => {
         progress: undefined,
         theme: "dark",
       });
-      return;
+      return false;
     }
+    return true;
+  };
 
-    // !!!!!! uncomment to test messages without sending email 
+  const validateEmailField = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isEmailValid = emailRegex.test(emailRef.current?.value as string);
+
+    if (!isEmailValid) {
+      toast.error("Podaj prawidłowy email.", {
+        className: "toast-position",
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return false;
+    }
+    return true;
+  }
+
+  const sendEmail = async (e: any) => {
+    if (!validateEmptyFields() || !validateEmailField()) {
+      return;
+    };
+
+    // !!!!!! uncomment to test messages without sending email
     toast.success("🦄 Wow so easy!", {
       className: "toast-position",
       position: "top-right",
@@ -134,32 +162,32 @@ const ContactForm: React.FC = () => {
     });
 
     // !!!!!! and comment this part till last bracket
-  //     const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
-  //     const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
-  //     try {
-  //       setLoading(true);
-  //       const sendPromise = new Promise((resolve, reject) => {
-  //         emailjs.send(serviceId, templateId, {
-  //           name: nameRef.current?.value,
-  //           email: emailRef.current?.value,
-  //           phoneNumber: phoneNumberRef.current?.value,
-  //           message: messageRef.current?.value,
-  //         })
-  //           .then((response) => resolve(response))
-  //           .catch((error) => reject(error));
-  //       });
+    //     const serviceId = process.env.REACT_APP_EMAIL_JS_SERVICE_ID as string;
+    //     const templateId = process.env.REACT_APP_EMAIL_JS_TEMPLATE_ID as string;
+    //     try {
+    //       setLoading(true);
+    //       const sendPromise = new Promise((resolve, reject) => {
+    //         emailjs.send(serviceId, templateId, {
+    //           name: nameRef.current?.value,
+    //           email: emailRef.current?.value,
+    //           phoneNumber: phoneNumberRef.current?.value,
+    //           message: messageRef.current?.value,
+    //         })
+    //           .then((response) => resolve(response))
+    //           .catch((error) => reject(error));
+    //       });
 
-  //       toast.promise(
-  //         sendPromise,
-  //         {
-  //           pending: "Wysyłanie wiadomości...",
-  //           success: "Wiadomość wysłana!",
-  //           error: "Coś poszło nie tak :(",
-  //         }
-  //       )
-  //     } finally {
-  //       setLoading(false);
-  //     }
+    //       toast.promise(
+    //         sendPromise,
+    //         {
+    //           pending: "Wysyłanie wiadomości...",
+    //           success: "Wiadomość wysłana!",
+    //           error: "Coś poszło nie tak :(",
+    //         }
+    //       )
+    //     } finally {
+    //       setLoading(false);
+    //     }
   };
 
   return (
@@ -171,6 +199,7 @@ const ContactForm: React.FC = () => {
               id="name"
               type="text"
               placeholder="Imię*"
+              maxLength={30}
               ref={nameRef}
             ></input>
             <BlackLine />
@@ -178,6 +207,7 @@ const ContactForm: React.FC = () => {
               id="email"
               type="text"
               placeholder="Email*"
+              maxLength={30}
               ref={emailRef}
             ></input>
             <BlackLine />
@@ -185,12 +215,14 @@ const ContactForm: React.FC = () => {
               id="phoneNumber"
               type="text"
               placeholder="Numer telefonu"
+              maxLength={15}
               ref={phoneNumberRef}
             ></input>
             <BlackLine />
             <textarea
               id="description"
               placeholder="W czym możemy Ci pomóc?*"
+              maxLength={1000}
               ref={messageRef}
             ></textarea>
           </InputsField>

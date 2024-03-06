@@ -9,8 +9,7 @@ const Background = styled.div`
 
 const title = "O Nas";
 const description =
-  "Witaj w DualWeb - miejscu, gdzie pasja do tworzenia innowacyjnych rozwiązań spotyka się z zaangażowaniem w rozwijanie oblicza Twojego biznesu online. Jesteśmy zespołem kreatywnych entuzjastów, gotowych przekuć Twoje pomysły na funkcjonalne i estetyczne strony internetowe.";
-
+ "Witaj w Dualweb - miejscu gdzie wierzymy, że nasza wizja technologicznego postępu może stać się kluczowym elementem Twojego sukcesu. Jesteśmy gotowi być Twoim partnerem w transformacji cyfrowej, oferując nowoczesne, spersonalizowane rozwiązania IT, które napędzają postęp i pozwalają osiągnąć sukces w dynamicznym środowisku biznesowym."
 const AboutUs: React.FC = () => {
   return (
     <>

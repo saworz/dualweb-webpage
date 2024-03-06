@@ -129,10 +129,10 @@ const Technologies = () => {
       {/* <BlackCover /> */}
       <RightSideContainer>
         <TextContainer>
-          <p>Odwiedź naszą stronę już dziś i skorzystaj z naszych usług tworzenia stron internetowych!
-            Nasz doświadczony zespół projektantów dostosuje witrynę do Twoich unikalnych potrzeb, zapewniając
-            profesjonalny i atrakcyjny wygląd. Inwestycja w indywidualne projektowanie to klucz do wyróżnienia
-            się w sieci i przyciągnięcia uwagi klientów. Rozpocznij swoją podróż online z naszymi ekspertami ds. projektowania stron.</p>
+          <p>
+            Inwestycja w indywidualne projektowanie to klucz do wyróżnienia się w sieci i przyciągnięcia uwagi klientów.
+            Dzięki korzystaniu z nowoczesnych technologii i języków programowania jesteśmy w stanie zapewnić rozwiązania pokrywające się Twoimi pomysłami.
+          </p>
         </TextContainer>
 
         <BadgesContainer>

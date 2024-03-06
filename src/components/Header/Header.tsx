@@ -33,9 +33,12 @@ const ContentWrapper = styled.div`
 
 const Text = styled.h1`
   width: 80%;
-  color: #888888;
-  font-family: Open-sans, sans-serif;
+  color: #dadada;
+  /* color: #888888; */
+  /* font-family: Open-sans, sans-serif; */
+  font-family: 'montserrat';
   font-size: 24px;
+  font-weight: 600;
   text-align: center;
 
   @media ${device.laptop} {
@@ -81,7 +84,7 @@ const Header: React.FC = () => {
             },
           }}
         />
-        <Text>Programujemy, Wdrażamy, Udoskonalamy</Text>
+        <Text>Rozwiązania softwarowe dla Twojego biznesu</Text>
       </ContentWrapper>
     </Background>
   );

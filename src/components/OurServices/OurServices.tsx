@@ -8,7 +8,7 @@ import { device } from '../../settings/deviceSize';
 import useWindowSize from '../../hooks/useWindowSize';
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, EffectCube, Autoplay, Navigation } from "swiper/modules";
+import { Pagination, Autoplay, Navigation } from "swiper/modules";
 import 'swiper/css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/pagination';
@@ -81,7 +81,7 @@ const OurServices: React.FC = () => {
   }, [windowSize]);
 
   return (
-    <Background>
+    <Background className="our-services">
       <Pipeline
         animationSeconds={10}
         slowDownSteps={10}
@@ -101,13 +101,6 @@ const OurServices: React.FC = () => {
               slidesPerView: 3,
             },
           }}
-          effect={isMobile ? 'cube' : 'slide'}
-          cubeEffect={{
-            shadow: true,
-            slideShadows: true,
-            shadowOffset: 20,
-            shadowScale: 0.94,
-          }}
           autoplay={{
             delay: 5000,
             disableOnInteraction: false,
@@ -117,7 +110,7 @@ const OurServices: React.FC = () => {
           centeredSlides={true}
           pagination={true}
           navigation={true}
-          modules={[Pagination, EffectCube, Autoplay, Navigation]}
+          modules={[Pagination, Autoplay, Navigation]}
           className="mySwiper"
         >
           {ourServicesData.map((item) => (

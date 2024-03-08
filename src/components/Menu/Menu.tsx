@@ -113,6 +113,12 @@ const Menu: React.FC = () => {
   const handleClick = () => {
     setClicked(!clicked);
   };
+
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    section!.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <ContentWrapper>
       <LogoImage src={LogoDW} alt="dualweb logo"
@@ -129,11 +135,10 @@ const Menu: React.FC = () => {
         }}
       />
       <NavBar className={clicked ? 'active' : ''}>
-        <NavItem><NavItemLink>O Nas</NavItemLink></NavItem>
-        <NavItem><NavItemLink>Technologie</NavItemLink></NavItem>
-        <NavItem><NavItemLink>Projekty</NavItemLink></NavItem>
-        <NavItem><NavItemLink>Kontakt</NavItemLink></NavItem>
-        <NavItem><NavItemLink>Lorem</NavItemLink></NavItem>
+        <NavItem><NavItemLink onClick={() => scrollToSection('aboutUs')} >O Nas</NavItemLink></NavItem>
+        <NavItem><NavItemLink onClick={() => scrollToSection('services')}>Serwisy</NavItemLink></NavItem>
+        <NavItem><NavItemLink onClick={() => scrollToSection('technologies')}>Technologie</NavItemLink></NavItem>
+        <NavItem><NavItemLink onClick={() => scrollToSection('contact')}>Kontakt</NavItemLink></NavItem>
       </NavBar>
       <Mobile onClick={handleClick}>
         <MobileIcon

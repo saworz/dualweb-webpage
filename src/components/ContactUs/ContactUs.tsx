@@ -18,10 +18,10 @@ const Background = styled.div`
 
 const bottomText =
   "Razem z nami otworzysz swój biznes na nowe środowisko. Dołącz do Dualweb i odkryj, jak możemy pomóc Ci osiągnąć sukces online.";
-  
+
 const ContactUs: React.FC = () => {
   return (
-    <Background>
+    <Background id="contact">
       <ContactInfo
         adres="Bydgoszcz, Polska"
         contact1="507 960 034 - Michał"

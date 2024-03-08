@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-// import LaptopBackgroundLowRes from "../../assets/laptop-low-res.jpeg"
-// import LaptopBackgroundHighRes from "../../assets/laptop.jpeg"
 import TechnologyIcons from "./Icons";
 import { device } from '../../settings/deviceSize';
 
@@ -20,30 +18,16 @@ const Background = styled.div`
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   
-  @media ${device.laptop} {
-    position: relative;
-    z-index: -200;
-    background:no-repeat url(${LaptopBackgroundHighRes});
-    background-size: cover;
+  @media ${device.laptop} {    
+      position: relative;
   }
 `
 
 const BackgroundImage = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 25px;
-  z-index: -100;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
-
-const BlackCover = styled.div`
-  display: flex;
-  position: absolute;
-  top: 25px;
-  height: 25px;
-  width: 100%;
-  background-color: #010503ff;
-`
 
 const RightSideContainer = styled.div`
   display: flex;
@@ -86,8 +70,6 @@ const TextContainer = styled.div`
 `;
 
 const BadgesContainer = styled.div`
-  // position: absolute;
-  // top: 65%;
   display: flex;
   flex-direction: column;
 
@@ -108,25 +90,17 @@ const BadgesContainer = styled.div`
 const Technologies = () => {
   const [imageDownloaded, setImageDownloaded] = useState(false);
 
-  const handleDownload = () => {
-    setImageDownloaded(true);
-  };
+  useEffect(() => {
+    const img = new Image();
+    img.src = LaptopBackgroundHighRes;
+    img.onload = () => {
+      setImageDownloaded(true);
+    };
+  }, []);
 
   return (
     <Background>
-      {/* {!imageDownloaded && (<BackgroundImage
-        src={LaptopBackgroundLowRes}
-      />)}
-
-      <BackgroundImage
-        src={LaptopBackgroundHighRes}
-        style={{
-          display: imageDownloaded ? 'block' : 'none'
-        }}
-        onLoad={handleDownload}
-      /> */}
-
-      {/* <BlackCover /> */}
+      <BackgroundImage src={imageDownloaded ? LaptopBackgroundHighRes : LaptopBackgroundLowRes} />
       <RightSideContainer>
         <TextContainer>
           <p>

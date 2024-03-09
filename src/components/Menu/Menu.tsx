@@ -136,7 +136,7 @@ const Menu: React.FC = () => {
       />
       <NavBar className={clicked ? 'active' : ''}>
         <NavItem><NavItemLink onClick={() => scrollToSection('aboutUs')} >O Nas</NavItemLink></NavItem>
-        <NavItem><NavItemLink onClick={() => scrollToSection('services')}>Serwisy</NavItemLink></NavItem>
+        <NavItem><NavItemLink onClick={() => scrollToSection('services')}>Usługi</NavItemLink></NavItem>
         <NavItem><NavItemLink onClick={() => scrollToSection('technologies')}>Technologie</NavItemLink></NavItem>
         <NavItem><NavItemLink onClick={() => scrollToSection('contact')}>Kontakt</NavItemLink></NavItem>
       </NavBar>

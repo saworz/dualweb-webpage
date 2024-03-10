@@ -99,7 +99,7 @@ const Technologies = () => {
   }, []);
 
   return (
-    <Background>
+    <Background id="technologies">
       <BackgroundImage src={imageDownloaded ? LaptopBackgroundHighRes : LaptopBackgroundLowRes} />
       <RightSideContainer>
         <TextContainer>

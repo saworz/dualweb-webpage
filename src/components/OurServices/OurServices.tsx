@@ -81,7 +81,7 @@ const OurServices: React.FC = () => {
   }, [windowSize]);
 
   return (
-    <Background className="our-services">
+    <Background className="our-services" id="services">
       <Pipeline
         animationSeconds={10}
         slowDownSteps={10}

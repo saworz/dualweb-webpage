@@ -9,11 +9,11 @@ const Background = styled.div`
 
 const title = "O Nas";
 const description =
- "Witaj w Dualweb - miejscu gdzie wierzymy, że nasza wizja technologicznego postępu może stać się kluczowym elementem Twojego sukcesu. Jesteśmy gotowi być Twoim partnerem w transformacji cyfrowej, oferując nowoczesne, spersonalizowane rozwiązania IT, które napędzają postęp i pozwalają osiągnąć sukces w dynamicznym środowisku biznesowym."
+  "Witaj w Dualweb - miejscu gdzie wierzymy, że nasza wizja technologicznego postępu może stać się kluczowym elementem Twojego sukcesu. Jesteśmy gotowi być Twoim partnerem w transformacji cyfrowej, oferując nowoczesne, spersonalizowane rozwiązania IT, które napędzają postęp i pozwalają osiągnąć sukces w dynamicznym środowisku biznesowym."
 const AboutUs: React.FC = () => {
   return (
     <>
-      <Background>
+      <Background id="aboutUs">
         <LampContainer title={title}>{description}</LampContainer>
       </Background>
     </>

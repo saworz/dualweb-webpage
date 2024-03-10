@@ -1,5 +1,5 @@
 import React, { useRef, LegacyRef, useState } from "react";
-import { useScrollSnap } from "../../hooks/uesScrollSnap";
+import { useScrollSnap } from "../../hooks/useScrollSnap";
 
 interface ScrollSnapProps {
   children: React.ReactNode;

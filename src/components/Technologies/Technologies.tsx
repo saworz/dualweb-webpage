@@ -105,7 +105,7 @@ const Technologies = () => {
         <TextContainer>
           <p>
             Inwestycja w indywidualne projektowanie to klucz do wyróżnienia się w sieci i przyciągnięcia uwagi klientów.
-            Dzięki korzystaniu z nowoczesnych technologii i języków programowania jesteśmy w stanie zapewnić rozwiązania pokrywające się Twoimi pomysłami.
+            Dzięki korzystaniu z nowoczesnych technologii i języków programowania jesteśmy w stanie zapewnić rozwiązania pokrywające się Twoimi potrzebami i pomysłami.
           </p>
         </TextContainer>
 

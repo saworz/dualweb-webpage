@@ -94,6 +94,7 @@ const ContactForm: React.FC = () => {
   const phoneNumberRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const [loading, setLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
 
   useEffect(
     () => emailjs.init(process.env.REACT_APP_EMAIL_JS_PUBLIC_KEY as string),
@@ -144,9 +145,14 @@ const ContactForm: React.FC = () => {
   }
 
   const sendEmail = async (e: any) => {
-    if (!validateEmptyFields() || !validateEmailField()) {
+    if (!validateEmptyFields() || !validateEmailField() || disableButton) {
       return;
     };
+    
+    setDisableButton(true);
+    setTimeout(() => {
+      setDisableButton(false);
+    }, 5000);
 
     // !!!!!! uncomment to test messages without sending email
     toast.success("🦄 Wow so easy!", {
@@ -227,7 +233,7 @@ const ContactForm: React.FC = () => {
             ></textarea>
           </InputsField>
 
-          <FormButton clickEvent={sendEmail} />
+          <FormButton clickEvent={sendEmail} buttonLock={disableButton} />
         </BackgroundGradient>
       </FormField>
     </ContactFormDiv>

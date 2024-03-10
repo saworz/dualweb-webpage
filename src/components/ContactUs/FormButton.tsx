@@ -16,13 +16,21 @@ const ButtonDiv = styled.div`
 
 interface IFormButton {
   clickEvent: React.MouseEventHandler<HTMLButtonElement>;
+  buttonLock: boolean;
 }
-const FormButton: React.FC<IFormButton> = ({ clickEvent }) => {
+const FormButton: React.FC<IFormButton> = ({ clickEvent, buttonLock }) => {
   return (
     <ButtonDiv>
-      <button className="shadow-[inset_0_0_0_2px_#616467] px-6 py-2 rounded-full tracking-widest 
-      bg-transparent hover:bg-[#616467] hover:text-white dark:text-neutral-200 transition duration-200"
-      onClick={clickEvent}>
+      <button
+        className={`shadow-[inset_0_0_0_2px_#616467] px-6 py-2 rounded-full tracking-widest 
+          bg-transparent dark:text-neutral-200 transition duration-200 ${
+            buttonLock
+              ? "cursor-not-allowed"
+              : "hover:bg-[#616467] hover:text-white"
+          }`}
+        onClick={clickEvent}
+        disabled={buttonLock}
+      >
         Wyślij
       </button>
     </ButtonDiv>

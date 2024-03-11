@@ -25,7 +25,7 @@ const FormButton: React.FC<IFormButton> = ({ clickEvent, buttonLock }) => {
         className={`shadow-[inset_0_0_0_2px_#616467] px-6 py-2 rounded-full tracking-widest 
           bg-transparent dark:text-neutral-200 transition duration-200 ${
             buttonLock
-              ? "cursor-not-allowed"
+              ? "cursor-wait"
               : "hover:bg-[#616467] hover:text-white"
           }`}
         onClick={clickEvent}

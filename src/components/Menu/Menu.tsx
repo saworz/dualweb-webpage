@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import LogoDW from "../../assets/logo.png";
-import { device } from '../../settings/deviceSize';
+import LogoDW from "../../assets/clean-logo.png";
+import { device } from "../../settings/deviceSize";
 import { motion } from "framer-motion";
 
 const ContentWrapper = styled.nav`
@@ -9,18 +9,24 @@ const ContentWrapper = styled.nav`
   top: 0;
   left: 0;
   z-index: 999;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #fff;
-`
+`;
 
-const LogoImage = styled(motion.img)`
+const LogoImage = styled.img`
+  margin-left: 10px;
+  padding: 3px;
   height: 50px;
-  width: 80px;
-`
+  width: 60px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 const NavBar = styled.nav`
   display: flex;
@@ -32,7 +38,7 @@ const NavBar = styled.nav`
   right: -300px;
   width: 250px;
   height: 100vh;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0, 0, 0, 0.9);
   box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
   padding: 40px 0 0 10px;
   transition: 0.3s ease-in-out;
@@ -49,12 +55,11 @@ const NavBar = styled.nav`
     width: auto;
     padding: 10px 0;
   }
-  
+
   &.active {
     right: 0;
   }
-
-`
+`;
 
 const NavItem = styled.li`
   list-style: none;
@@ -64,7 +69,7 @@ const NavItem = styled.li`
   @media ${device.laptop} {
     padding: 0 30px;
   }
-`
+`;
 
 const NavItemLink = styled.a`
   text-decoration: none;
@@ -91,21 +96,21 @@ const NavItemLink = styled.a`
       left: 30px;
     }
   }
-`
+`;
 
 const Mobile = styled.div`
-  display:block;
+  display: block;
   margin-right: 15px;
 
   @media ${device.laptop} {
     display: none;
   }
-`
+`;
 
 const MobileIcon = styled.i`
   font-size: 24px;
   cursor: pointer;
-`
+`;
 
 const Menu: React.FC = () => {
   const [clicked, setClicked] = useState<boolean>(false);
@@ -116,29 +121,38 @@ const Menu: React.FC = () => {
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
-    section!.scrollIntoView({ behavior: 'smooth' });
+    section!.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <ContentWrapper>
-      <LogoImage src={LogoDW} alt="dualweb logo"
-        initial={{ rotate: 360, scale: 0 }}
-        animate={{ rotate: 0, scale: 1 }}
-        transition={{
-          duration: .7,
-          ease: [0, 0.71, 0.2, 1.01],
-          scale: {
-            type: "spring",
-            stiffness: 260,
-            damping: 20
-          }
-        }}
+      <LogoImage
+        src={LogoDW}
+        alt="dualweb logo"
+        onClick={() => scrollToSection("header")}
       />
-      <NavBar className={clicked ? 'active' : ''}>
-        <NavItem><NavItemLink onClick={() => scrollToSection('aboutUs')} >O Nas</NavItemLink></NavItem>
-        <NavItem><NavItemLink onClick={() => scrollToSection('services')}>Usługi</NavItemLink></NavItem>
-        <NavItem><NavItemLink onClick={() => scrollToSection('technologies')}>Technologie</NavItemLink></NavItem>
-        <NavItem><NavItemLink onClick={() => scrollToSection('contact')}>Kontakt</NavItemLink></NavItem>
+
+      <NavBar className={clicked ? "active" : ""}>
+        <NavItem>
+          <NavItemLink onClick={() => scrollToSection("aboutUs")}>
+            O Nas
+          </NavItemLink>
+        </NavItem>
+        <NavItem>
+          <NavItemLink onClick={() => scrollToSection("services")}>
+            Usługi
+          </NavItemLink>
+        </NavItem>
+        <NavItem>
+          <NavItemLink onClick={() => scrollToSection("technologies")}>
+            Technologie
+          </NavItemLink>
+        </NavItem>
+        <NavItem>
+          <NavItemLink onClick={() => scrollToSection("contact")}>
+            Kontakt
+          </NavItemLink>
+        </NavItem>
       </NavBar>
       <Mobile onClick={handleClick}>
         <MobileIcon

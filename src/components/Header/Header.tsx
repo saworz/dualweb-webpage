@@ -55,7 +55,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <Background>
+    <Background id="header">
       {!imageDownloaded && (<BackgroundImage
         src={HeaderBackgroundLowRes}
       />)}

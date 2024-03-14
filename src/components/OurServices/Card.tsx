@@ -27,11 +27,35 @@ const CardContainer = styled.div`
   background-color: rgba(255,255,255, 1);
   border-radius: 10px;
   
-  // &:hover {
-    //   background-color: #dfdc5d;
-    //   transform: translate(0%, -5%);
-    // }
+    &:hover {
+      transform: scale(1.03);
+      border-color: #8a2be2; /* Kolor fioletowej ramki na hover */
+      box-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2, 0 0 40px #8a2be2; /* Efekt fioletowego neonu za pomocą cienia */
+    }
     
+    &:::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      z-index: -1;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #8a2be2, #ff00ff, #8a2be2, #ff00ff);
+      background-size: 400% 400%;
+      animation: animate 4s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
     @media ${device.laptop} {
       height: 400px;
       width: 500px;
